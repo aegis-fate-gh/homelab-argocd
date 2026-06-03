@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homarr
+  namespace: jovian-prod
+  labels:
+    app: homarr
+    service: dashboards
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: homarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: homarr
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: homarr
+        image: ghcr.io/homarr-labs/homarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 7575
+          name: homarr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /appdata
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: SECRET_ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: homarr-encryption-key
+              key: encryption_key
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: homarr-pvc
+          readOnly: false
