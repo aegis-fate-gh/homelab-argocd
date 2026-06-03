@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr
+  namespace: jovian-prod
+  labels:
+    app: overseerr
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: overseerr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: overseerr
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: overseerr
+        image: ghcr.io/seerr-team/seerr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5055
+          name: overseerr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        - name: nfs-media
+          mountPath: /nfs-media
+          readOnly: true
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: overseerr-pvc
+          readOnly: false
+      - name: nfs-media
+        persistentVolumeClaim:
+          claimName: overseerr-smb-media-pvc
+          readOnly: true
