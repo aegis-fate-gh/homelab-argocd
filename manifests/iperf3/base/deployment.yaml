@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iperf3
+  namespace: jovian-prod
+  labels:
+    app: iperf3
+    service: networking
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: iperf3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: iperf3
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: iperf3
+        image: networkstatic/iperf3
+        args: ["-s"]
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5201
+          name: input

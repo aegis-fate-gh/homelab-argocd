@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: iperf3
+  namespace: argocd
+  finalizers:
+  # Delete deployed resources when the Application is deleted
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: manifests/iperf3/base
+    repoURL: https://github.com/aegis-fate-gh/homelab-argocd
+    targetRevision: HEAD
+    directory:
+      recurse: false # Set to true to track manifests in subdirectories
+      include: '{*.yaml,*.yml}' # Only process these file patterns
+
+  destination:
+    namespace: jovian-prod
+    server: https://kubernetes.default.svc
+  
+  
