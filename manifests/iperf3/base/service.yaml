@@ -13,5 +13,5 @@ spec:
     targetPort: input
     name: input
   selector:
-    app: iperf3
+    app.kubernetes.io/name: iperf3
   type: LoadBalancer

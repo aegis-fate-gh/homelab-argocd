@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: iperf3
+        app.kubernetes.io/name: iperf3
     spec:
       nodeSelector:
         connection: standard

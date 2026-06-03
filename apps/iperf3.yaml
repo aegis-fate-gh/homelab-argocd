@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: iperf3
-  namespace: argocd
+  namespace: jovian-prod
   finalizers:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
