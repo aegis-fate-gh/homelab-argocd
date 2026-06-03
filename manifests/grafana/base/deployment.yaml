@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: jovian-prod
+  labels:
+    app: grafana
+    service: observability
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: grafana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      nodeSelector:
+        connection: standard
+      securityContext:
+        runAsUser: 472
+        fsGroup: 472
+      containers:
+      - name: grafana
+        image: grafana/grafana-oss
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: grafana-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /var/lib/grafana
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+          readOnly: false
