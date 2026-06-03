@@ -1,21 +1,18 @@
-kubeconfig: /etc/rancher/k3s/k3s.yaml
-state: present
-definition:
-  apiVersion: v1
-  kind: Service
-  metadata:
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyfin
+  namespace: jovian-prod
+  annotations:
+    metallb.io/address-pool: prod-pool
+    metallb.io/loadBalancerIPs: 192.168.6.221
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: 8096
+    targetPort: jellyfin
     name: jellyfin
-    namespace: jovian-prod
-    annotations:
-      metallb.io/address-pool: prod-pool
-      metallb.io/loadBalancerIPs: 192.168.6.221
-  spec:
-    externalTrafficPolicy: Local
-    ports:
-    - port: 8096
-      targetPort: jellyfin
-      name: jellyfin
-      protocol: TCP
-    selector:
-      app: jellyfin
-    type: LoadBalancer
+    protocol: TCP
+  selector:
+    app: jellyfin
+  type: LoadBalancer
