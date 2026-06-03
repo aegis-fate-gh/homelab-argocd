@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+  namespace: jovian-prod
+  labels:
+    app: vaultwarden
+    service: tools
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: vaultwarden
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: vaultwarden
+        image: vaultwarden/server:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: vw-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /data
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+        - name: DOMAIN
+          value: "https://vaultwarden.jovian.local.sch-apps.com"
+        - name: SIGNUPS_ALLOWED
+          value: "true"
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: vw-pvc
+          readOnly: false
