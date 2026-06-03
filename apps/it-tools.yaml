@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: iperf3
+  name: ititools
   finalizers:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: jovian
   source:
-    path: manifests/iperf3/base
+    path: manifests/it-tools/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:

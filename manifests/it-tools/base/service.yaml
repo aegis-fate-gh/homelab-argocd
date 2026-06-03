@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: it-tools-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: it-tools
+  ports:
+    - port: 80
+      targetPort: it-tools-http
+      protocol: TCP
+      name: it-tools-http
