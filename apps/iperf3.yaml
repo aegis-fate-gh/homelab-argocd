@@ -7,7 +7,7 @@ metadata:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: jovian
   source:
     path: manifests/iperf3/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
@@ -15,9 +15,7 @@ spec:
     directory:
       recurse: false # Set to true to track manifests in subdirectories
       include: '{*.yaml,*.yml}' # Only process these file patterns
-
   destination:
     namespace: jovian-prod
     server: https://kubernetes.default.svc
-  
   
