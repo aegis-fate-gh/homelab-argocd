@@ -14,13 +14,13 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: iperf3
+      app.kubernetes.io/name: iperf3
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        name: iperf3
+        app.kubernetes.io/name: iperf3
     spec:
       nodeSelector:
         connection: standard
