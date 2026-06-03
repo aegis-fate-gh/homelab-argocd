@@ -11,11 +11,10 @@ spec:
   source:
     path: manifests/iperf3/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
-    targetRevision: HEAD
+    targetRevision: main
     directory:
       recurse: false # Set to true to track manifests in subdirectories
       include: '{*.yaml,*.yml}' # Only process these file patterns
   destination:
     namespace: jovian-prod
     server: https://kubernetes.default.svc
-  
