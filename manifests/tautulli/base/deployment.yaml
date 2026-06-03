@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tautulli
+  namespace: jovian-prod
+  labels:
+    app: tautulli
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: tautulli
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tautulli
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: tautulli
+        image: ghcr.io/tautulli/tautulli:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8181
+          name: tautulli-http
+          protocol: TCP
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: tautulli-pvc
+          readOnly: false

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: service
+metadata:
+  name: tautulli-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: tautulli
+  ports:
+    - port: 8181
+      targetPort: tautulli-http
+      protocol: TCP
+      name: tautulli-http
