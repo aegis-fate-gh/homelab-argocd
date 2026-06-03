@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openspeedtest-service
+  namespace: jovian-prod
+  annotations:
+    metallb.io/address-pool: prod-pool
+    metallb.io/loadBalancerIPs: 192.168.6.211
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: 80
+    targetPort: http
+    name: http
+  - port: 443
+    targetPort: https
+    name: https
+  selector:
+    app: openspeedtest
+  type: LoadBalancer

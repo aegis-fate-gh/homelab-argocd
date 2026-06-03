@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openspeedtest
+  namespace: jovian-prod
+  labels:
+    app: openspeedtest
+    service: networking
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: openspeedtest
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: openspeedtest
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: openspeedtest
+        image: openspeedtest/latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: http
+        - containerPort: 3001
+          name: https
