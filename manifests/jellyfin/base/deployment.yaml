@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: jovian-prod
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: jellyfin
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      runtimeClassName: nvidia
+      nodeSelector:
+        gpu: rtx4060
+      containers:
+      - name: jellyfin
+        image: jellyfin/jellyfin:latest
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: 8096
+          name: jellyfin
+          protocol: TCP      
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: smb-media
+          mountPath: /nfs-media
+          readOnly: true
+        - name: jellyfin-transcode
+          mountPath: /config/transcodes
+        - name: dev-dri
+          mountPath: /dev/dri
+          readOnly: true
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: NVIDIA_VISIBLE_DEVICES 
+          value: "all"
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: compute,video,utility
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: jellyfin-pvc
+          readOnly: false
+      - name: smb-media
+        persistentVolumeClaim:
+          claimName: jellyfin-smb-media-pvc
+          readOnly: true
+      - name: jellyfin-transcode
+        hostPath:
+          path: /dev/shm
+      - name: dev-dri
+        hostPath:
+          path: /dev/dri
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - plex
+            topologyKey: "kubernetes.io/hostname"
