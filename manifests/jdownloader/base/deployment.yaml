@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jdownloader
+  namespace: jovian-prod
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: jdownloader
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jdownloader
+    spec:
+      containers:
+      - name: jdownloader
+        image: jlesage/jdownloader-2:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5800
+          name: jdownload-http
+          protocol: TCP      
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: smb-media
+          mountPath: /output
+          readOnly: false
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: jdownloader-pvc
+          readOnly: false
+      - name: smb-media
+        persistentVolumeClaim:
+          claimName: jdownloader-smb-media-pvc
+          readOnly: false
