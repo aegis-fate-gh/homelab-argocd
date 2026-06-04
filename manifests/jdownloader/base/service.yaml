@@ -11,4 +11,3 @@ spec:
       targetPort: jdownload-http
       protocol: TCP
       name: jdownload-http
-      

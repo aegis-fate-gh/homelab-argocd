@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptimekuma
+  namespace: jovian-prod
+  labels:
+    app: uptimekuma
+    service: observability
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: uptimekuma
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: uptimekuma
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: uptimekuma
+        image: louislam/uptime-kuma:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+          name: uptimekuma-http
+          protocol: TCP
+        volumeMounts:
+        - name: config
+          mountPath: /app/data
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: uptimekuma-pvc
+          readOnly: false

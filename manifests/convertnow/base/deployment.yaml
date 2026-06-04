@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: convertnow
+  namespace: jovian-prod
+  labels:
+    app: convertnow
+    service: tools
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: convertnow
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: convertnow
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: convertnow
+        image: ghcr.io/ferraridamiano/converternow:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: convertnow-http
+          protocol: TCP

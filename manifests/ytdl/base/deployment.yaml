@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ytdl
+  namespace: jovian-prod
+  labels:
+    app: ytdl
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ytdl
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ytdl
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: ytdl-material
+        image: tzahi12345/youtubedl-material:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 17442
+          name: ytdl-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /app/appdata
+          subPath: appdata
+        - name: config
+          mountPath: /app/users
+          subPath: users
+        - name: smb-media
+          mountPath: /app/audio
+          subPath: downloads/youtube-dl/audio
+        - name: smb-media
+          mountPath: /app/video
+          subPath: downloads/youtube-dl/video
+        - name: smb-media
+          mountPath: /app/subscriptions
+          subPath: downloads/youtube-dl/subscriptions
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+        - name: ytdl_mongodb_connection_string
+          value: 'mongodb://localhost:27017'
+        - name: ytdl_use_local_db
+          value: 'false'
+        - name: write_ytdl_config
+          value: 'true'
+      - name: ytdl-mongodb
+        image: mongo:4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 27017
+          name: ytdl-mongo
+          protocol: TCP 
+        volumeMounts:
+        - name: config
+          mountPath: /data/db
+          subPath: db
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: ytdl-pvc
+          readOnly: false
+      - name: smb-media
+        persistentVolumeClaim:
+          claimName: ytdl-smb-media-pvc
+          readOnly: false

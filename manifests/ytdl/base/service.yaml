@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ytdl-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: ytdl
+  ports:
+    - port: 17442
+      targetPort: ytdl-http
+      protocol: TCP
+      name: ytdl-http
