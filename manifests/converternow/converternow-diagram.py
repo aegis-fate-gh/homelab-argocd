@@ -4,7 +4,7 @@ from diagrams.onprem import network
 
 with Diagram("Converter Now", show=False, direction="TB"):
     with Cluster("jovian-prod"):
-        converternow = Custom("Converter Now", "/icons/converternow.png")
+        converternow = Custom("Converter Now", "/app/icons/converternow.png")
     with Cluster("kube-system"):
         traefik = network.Traefik("Traefik\nInternal Proxy")
 
