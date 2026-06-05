@@ -2,7 +2,7 @@ from diagrams import Diagram, Cluster, Edge
 from diagrams.custom import Custom
 from diagrams.onprem import network
 
-with Diagram("Converternow", show=False, direction="TB"):
+with Diagram("Converter Now", show=False, direction="TB"):
     with Cluster("jovian-prod"):
         converternow = Custom("Converter Now", "/icons/converternow.png")
     with Cluster("kube-system"):
