@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: convertnow-ingress
+  name: converternow-ingress
   namespace: jovian-prod
   annotations:
     traefik.ingress.kubernetes.io/router.tls: "true"
@@ -16,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name:  convertnow-service
+                name:  converternow-service
                 port:
                   number: 80
