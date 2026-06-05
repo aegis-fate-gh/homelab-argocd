@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: converternow-service
+  name: convertnow-service
   namespace: jovian-prod
 spec:
   selector:
     app: converternow
   ports:
     - port: 80
-      targetPort: converternow-http
+      targetPort: convertnow-http
       protocol: TCP
-      name: converternow-http
+      name: convertnow-http

@@ -28,5 +28,5 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-          name: converternow-http
+          name: convertnow-http
           protocol: TCP
