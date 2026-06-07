@@ -80,12 +80,26 @@ spec:
               key: external_ip
         args:
         - &check-ip |
-            IP=$(curl -s checkip.amazonaws.com)
-            if [ "$IP" != "$EXPECTED_IP" ]; then
-              echo "IP is different from $EXPECTED_IP. Current IP is $IP."
-            else
-              echo "IP is $EXPECTED_IP. Exiting..."
+            echo "Waiting for VPN tunnel..."
+            for i in $(seq 1 10); do
+              IP=$(curl -s --max-time 5 checkip.amazonaws.com)
+              if [ -n "$IP" ]; then
+                break
+              fi
+              echo "No IP yet, retrying in 3s... ($i/10)"
+              sleep 3
+            done
+
+            if [ -z "$IP" ]; then
+              echo "Could not determine public IP after retries. Exiting..."
               exit 1
+            fi
+
+            if [ "$IP" = "$EXPECTED_IP" ]; then
+              echo "IP is not masked! Current IP is $IP. Exiting..."
+              exit 1
+            else
+              echo "IP is masked as $IP. Proceeding..."
             fi
       containers:
       - name: qbittorrent
