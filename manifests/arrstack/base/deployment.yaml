@@ -1,0 +1,155 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arrstack
+  namespace: jovian-prod
+  labels:
+    app: arrstack
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: arrstack
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: arrstack
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: bazarr
+        image: ghcr.io/hotio/bazarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6767
+          name: bazarr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: bazarr-config
+          mountPath: /config
+        - name: nfs-media
+          mountPath: /nfs-media
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+      - name: prowlarr
+        image: ghcr.io/hotio/prowlarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9696
+          name: prowlarr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: prowlarr-config
+          mountPath: /config
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+      - name: radarr
+        image: ghcr.io/hotio/radarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 7878
+          name: radarr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: radarr-config
+          mountPath: /config
+        - name: nfs-media
+          mountPath: /nfs-media
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+      - name: sonarr
+        image: ghcr.io/hotio/sonarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8989
+          name: sonarr-http
+          protocol: TCP   
+        volumeMounts:
+        - name: sonarr-config
+          mountPath: /config
+        - name: nfs-media
+          mountPath: /nfs-media
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+      - name: flaresolverr
+        image: ghcr.io/flaresolverr/flaresolverr:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8191
+          name: flare-tcp
+          protocol: TCP   
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+      - name: cleanuparr
+        image: ghcr.io/cleanuparr/cleanuparr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 11011
+          name: cleanuparr-tcp
+          protocol: TCP   
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        volumeMounts:
+        - name: cleanuparr-config
+          mountPath: /config
+      volumes:
+      - name: bazarr-config
+        persistentVolumeClaim:
+          claimName: bazarr-pvc
+          readOnly: false
+      - name: prowlarr-config
+        persistentVolumeClaim:
+          claimName: prowlarr-pvc
+          readOnly: false
+      - name: radarr-config
+        persistentVolumeClaim:
+          claimName: radarr-pvc
+          readOnly: false
+      - name: sonarr-config
+        persistentVolumeClaim:
+          claimName: sonarr-pvc
+          readOnly: false
+      - name: cleanuparr-config
+        persistentVolumeClaim:
+          claimName: cleanuparr-pvc
+          readOnly: false
+      - name: nfs-media
+        persistentVolumeClaim:
+          claimName: arrstack-smb-media-pvc
+          readOnly: false

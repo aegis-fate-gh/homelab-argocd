@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arrstack
+  finalizers:
+  # Delete deployed resources when the Application is deleted
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: jovian
+  source:
+    path: manifests/arrstack/base
+    repoURL: https://github.com/aegis-fate-gh/homelab-argocd
+    targetRevision: main
+    directory:
+      recurse: false # Set to true to track manifests in subdirectories
+      include: '{*.yaml,*.yml}' # Only process these file patterns
+  destination:
+    namespace: jovian-prod
+    server: https://kubernetes.default.svc

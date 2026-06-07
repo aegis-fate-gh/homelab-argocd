@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snapotter
+  namespace: jovian-prod
+  labels:
+    app: snapotter
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: snapotter
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: snapotter
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: snapotter
+        image: snapotter/snapotter:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1349
+          name: snapotter-http
+          protocol: TCP   
+        volumeMounts:
+        - name: config
+          mountPath: /data
+          subPath: config
+        - name: config
+          mountPath: /tmp/workspace
+          subPath: tmp
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: UMASK
+          value: '002'
+        - name: AUTH_ENABLED
+          value: 'false'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: snapotter-pvc

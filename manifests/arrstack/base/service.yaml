@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: arrstack-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: arrstack
+  ports:
+    - port: 6767
+      targetPort: bazarr-http
+      protocol: TCP
+      name: bazarr-http
+    - port: 9696
+      targetPort: prowlarr-http
+      protocol: TCP
+      name: prowlarr-http
+    - port: 7878
+      targetPort: radarr-http
+      protocol: TCP
+      name: radarr-http
+    - port: 8989
+      targetPort: sonarr-http
+      protocol: TCP
+      name: sonarr-http
+    - port: 8191
+      targetPort: flare-tcp
+      protocol: TCP
+      name: flare-tcp
+    - port: 11011
+      targetPort: cleanuparr-tcp
+      protocol: TCP
+      name: cleanuparr-tcp
