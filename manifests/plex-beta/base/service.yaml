@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex-beta
+  namespace: jovian-prod
+  annotations:
+    metallb.io/address-pool: prod-pool
+    metallb.io/loadBalancerIPs: 192.168.6.222
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: 32420
+    targetPort: plex
+    name: plex
+    protocol: TCP
+  - port: 32410
+    targetPort: plex-gdm-1
+    name: plex-gdm-1
+    protocol: UDP
+  - port: 32412
+    targetPort: plex-gdm-2
+    name: plex-gdm-2
+    protocol: UDP
+  - port: 32413
+    targetPort: plex-gdm-3
+    name: plex-gdm-3
+    protocol: UDP
+  - port: 32414
+    targetPort: plex-gdm-4
+    name: plex-gdm-4
+    protocol: UDP
+  - port: 12345
+    targetPort: plex-alloy
+    name: plex-alloy
+    protocol: TCP
+  selector:
+    app: plex-beta
+  type: LoadBalancer
