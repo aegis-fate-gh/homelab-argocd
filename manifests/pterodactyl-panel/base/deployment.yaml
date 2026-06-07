@@ -1,0 +1,169 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ptero-panel
+  namespace: jovian-prod
+  labels:
+    app: ptero-panel
+    service: pterodactyl
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ptero-panel
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ptero-panel
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: database
+        image: mariadb:10.5
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306
+          name: ptero-db
+          protocol: TCP
+        volumeMounts:
+        - name: ptero-panel-config
+          mountPath: /var/lib/mysql
+          subPath: db
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_database
+        - name: MARIADB_USER
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_user
+        - name: MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_password
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_root_password
+      - name: cache
+        image: redis:alpine
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6379
+          name: ptero-redis
+          protocol: TCP
+      - name: panel
+        image: ghcr.io/pterodactyl/panel:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: ptero-http
+          protocol: TCP
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: APP_ENV
+          value: "production"
+        - name: APP_ENVIRONMENT_ONLY
+          value: "false"
+        - name: APP_SERVICE_AUTHOR
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_app_service_author
+        - name: APP_URL
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_app_url
+        - name: APP_TIMEZONE
+          value: "America/Chicago"
+        - name: CACHE_DRIVER
+          value: "redis"
+        - name: SESSION_DRIVER
+          value: "redis"
+        - name: QUEUE_DRIVER
+          value: "redis"
+        - name: REDIS_HOST
+          value: "localhost"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: MAIL_FROM
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mail_from
+        - name: MAIL_DRIVER
+          value: "smtp"
+        - name: MAIL_HOST
+          value: "smtp.gmail.com"
+        - name: MAIL_PORT
+          value: "587"
+        - name: MAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mail_username
+        - name: MAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mail_password
+        - name: MAIL_ENCRYPTION
+          value: “true”
+        - name: APP_DEBUG
+          value: “false”
+        - name: TRUSTED_PROXIES
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_trusted_proxies
+        - name: DB_HOST
+          value: "127.0.0.1"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_password
+        - name: DB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: pterodactyl-secrets
+              key: ptero_mysql_database
+        volumeMounts:
+        - name: ptero-panel-config
+          mountPath: /app/var/
+          subPath: var
+        - name: ptero-panel-config
+          mountPath: /etc/nginx/http.d/
+          subPath: nginx
+        - name: ptero-panel-config
+          mountPath: /etc/letsencrypt/
+          subPath: certs
+        - name: ptero-panel-config
+          mountPath: /app/storage/logs
+          subPath: logs
+      volumes:
+      - name: ptero-panel-config
+        persistentVolumeClaim:
+          claimName: ptero-panel-pvc
+          readOnly: false
