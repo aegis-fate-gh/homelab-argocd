@@ -55,7 +55,7 @@ spec:
         - name: VPN_PORT_FORWARDING_PROVIDER
           valueFrom:
             secretKeyRef:
-              name: qbittorrent-forwarding
+              name: qbittorrent-secrets
               key: port_forwarding_provider
         - name: FIREWALL_OUTBOUND_SUBNETS
           value: '10.42.0.0/24,192.168.6.0/24'
@@ -72,10 +72,15 @@ spec:
       - name: curlpodtest
         image: curlimages/curl
         command: ['/bin/sh', '-c']
+        env:
+        - name: EXPECTED_IP
+          valueFrom:
+            secretKeyRef:
+              name: qbittorrent-secrets
+              key: external_ip
         args:
         - &check-ip |
             IP=$(curl -s checkip.amazonaws.com)
-            EXPECTED_IP="YOUR_IP_ADDRESS"
             if [ "$IP" != "$EXPECTED_IP" ]; then
               echo "IP is different from $EXPECTED_IP. Current IP is $IP."
             else
@@ -119,4 +124,4 @@ spec:
           path: /dev/net/tun
       - name: wg-conf
         secret:
-          secretName: qbittorrent-secrets
+          secretName: qbittorrent-wg-conf
