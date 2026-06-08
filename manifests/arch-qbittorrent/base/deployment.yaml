@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arch-arch-qbittorrent
+  name: arch-qbittorrent
   namespace: jovian-prod
   labels:
     app: arch-qbittorrent
