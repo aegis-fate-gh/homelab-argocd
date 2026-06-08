@@ -61,7 +61,6 @@ spec:
           value: '10.42.0.0/24,192.168.6.0/24'
         - name: DNS_UPSTREAM_RESOLVER_TYPE
           value: 'doh'
-        # Manually added these environment variables via Rancher WebUI: https://github.com/qdm12/gluetun-wiki/blob/main/setup/advanced/vpn-port-forwarding.md
         volumeMounts:
         - name: dev-net-tun
           mountPath: /dev/net/tun
@@ -81,6 +80,7 @@ spec:
         args:
         - &check-ip |
             echo "Waiting for VPN tunnel..."
+            echo "Your original IP is $EXPECTED_IP"
             for i in $(seq 1 10); do
               IP=$(curl -s --max-time 5 checkip.amazonaws.com)
               if [ -n "$IP" ]; then
@@ -104,11 +104,7 @@ spec:
       containers:
       - name: qbittorrent
         image: ghcr.io/hotio/qbittorrent
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8080
-          name: qbitt-http
-          protocol: TCP   
+        imagePullPolicy: IfNotPresent 
         volumeMounts:
         - name: config
           mountPath: /config
