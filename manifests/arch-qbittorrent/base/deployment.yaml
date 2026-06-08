@@ -23,7 +23,7 @@ spec:
       nodeSelector:
         connection: standard
       containers:
-      - name: arch-qbittorrent
+      - name: arch-qbit
         image: binhex/arch-qbittorrentvpn
         imagePullPolicy: IfNotPresent
         securityContext:
