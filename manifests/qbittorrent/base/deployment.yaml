@@ -145,6 +145,8 @@ spec:
           value: '10.42.0.0/24,192.168.6.0/24'
         - name: VPN_NAMESERVERS
           value: 'wg'
+        - name: VPN_LAN_LEAK_ENABLED
+          value: 'false'
       volumes:
       - name: config
         persistentVolumeClaim:
