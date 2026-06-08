@@ -137,15 +137,14 @@ spec:
           value: 'v1'
         - name: VPN_ENABLED
           value: 'true'
+        - name: VPN_CONF
+          value: 'wg0'
         - name: VPN_PROVIDER
-          valueFrom:
-            secretKeyRef:
-              name: qbittorrent-secrets
-              key: port_forwarding_provider
-        - name: VPN_EXPOSE_PORTS_ON_LAN
-          value: '8080/tcp,8080/udp'
+          value: 'generic'
         - name: VPN_LAN_NETWORK
           value: '10.42.0.0/24,192.168.6.0/24'
+        - name: VPN_NAMESERVERS
+          value: 'wg'
       volumes:
       - name: config
         persistentVolumeClaim:
