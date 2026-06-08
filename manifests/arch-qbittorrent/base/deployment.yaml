@@ -22,6 +22,16 @@ spec:
     spec:
       nodeSelector:
         connection: standard
+      initContainers:
+      - name: copy-wg-conf
+        image: busybox
+        command: ["sh", "-c", "mkdir -p /config/wireguard && cp /wg-secret/wg0.conf /config/wireguard/wg0.conf && chmod 600 /config/wireguard/wg0.conf"]
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: wg-conf
+          mountPath: /wg-secret
+          readOnly: true
       containers:
       - name: arch-qbit
         image: binhex/arch-qbittorrentvpn
@@ -36,9 +46,8 @@ spec:
           mountPath: /config
         - name: nfs-media
           mountPath: /nfs-media
-        - name: wg-conf
-          mountPath: /config/wireguard/wg0.conf
-          subPath: wg0.conf
+        - name: dev-net-tun
+          mountPath: /dev/net/tun
         ports:
         - containerPort: 8081
           name: archqbitt-http
