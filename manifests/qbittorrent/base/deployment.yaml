@@ -22,103 +22,110 @@ spec:
     spec:
       nodeSelector:
         connection: standard
-      initContainers:
-      - name: gluetun
-        # if you do not add restartPolicy the other init containers will never start
-        # it will be an initContainer and not a native sidecar container https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/
-        restartPolicy: Always
-        # Version pinned specifically to account for constant healthcheck failures in later versions
-        image: ghcr.io/qdm12/gluetun:v3.40.4
-        ports:
-        - containerPort: 8080
-          name: qbitt-http
-          protocol: TCP
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true"]
-        imagePullPolicy: Always
+      # initContainers:
+      # - name: gluetun
+      #   # if you do not add restartPolicy the other init containers will never start
+      #   # it will be an initContainer and not a native sidecar container https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/
+      #   restartPolicy: Always
+      #   # Version pinned specifically to account for constant healthcheck failures in later versions
+      #   image: ghcr.io/qdm12/gluetun:v3.40.4
+      #   ports:
+      #   - containerPort: 8080
+      #     name: qbitt-http
+      #     protocol: TCP
+      #   lifecycle:
+      #     postStart:
+      #       exec:
+      #         command: ["/bin/sh", "-c", "(ip rule del table 51820; ip -6 rule del table 51820) || true"]
+      #   imagePullPolicy: Always
+      #   securityContext:
+      #     privileged: true
+      #     capabilities:
+      #       add:
+      #       - 'NET_ADMIN'
+      #   env:
+      #   - name: TZ
+      #     value: 'America/Chicago'
+      #   - name: VPN_SERVICE_PROVIDER
+      #     value: 'custom'
+      #   - name: VPN_TYPE
+      #     value: 'wireguard'
+      #   - name: VPN_PORT_FORWARDING
+      #     value: 'on'
+      #   - name: VPN_PORT_FORWARDING_PROVIDER
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: qbittorrent-secrets
+      #         key: port_forwarding_provider
+      #   - name: FIREWALL_OUTBOUND_SUBNETS
+      #     value: '10.42.0.0/24,192.168.6.0/24'
+      #   - name: FIREWALL_INPUT_PORTS
+      #     value: '8080'
+      #   - name: DNS_UPSTREAM_RESOLVER_TYPE
+      #     value: 'doh'
+      #   volumeMounts:
+      #   - name: dev-net-tun
+      #     mountPath: /dev/net/tun
+      #   - name: wg-conf
+      #     mountPath: /gluetun/wireguard/wg0.conf
+      #     subPath: wg0.conf
+      #     readOnly: true
+      # - name: curlpodtest
+      #   image: curlimages/curl
+      #   command: ['/bin/sh', '-c']
+      #   env:
+      #   - name: EXPECTED_IP
+      #     valueFrom:
+      #       secretKeyRef:
+      #         name: qbittorrent-secrets
+      #         key: external_ip
+      #   args:
+      #   - &check-ip |
+      #       echo "Waiting for VPN tunnel..."
+      #       echo "Your original IP is $EXPECTED_IP"
+      #       for i in $(seq 1 10); do
+      #         IP=$(curl -s --max-time 5 checkip.amazonaws.com)
+      #         if [ -n "$IP" ]; then
+      #           break
+      #         fi
+      #         echo "No IP yet, retrying in 3s... ($i/10)"
+      #         sleep 3
+      #       done
+
+      #       if [ -z "$IP" ]; then
+      #         echo "Could not determine public IP after retries. Exiting..."
+      #         exit 1
+      #       fi
+
+      #       if [ "$IP" = "$EXPECTED_IP" ]; then
+      #         echo "IP is not masked! Current IP is $IP. Exiting..."
+      #         exit 1
+      #       else
+      #         echo "IP is masked as $IP. Proceeding..."
+      #       fi
+      containers:
+      - name: qbittorrent
+        image: ghcr.io/hotio/qbittorrent:release-3170680
+        imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
           capabilities:
             add:
             - 'NET_ADMIN'
-        env:
-        - name: TZ
-          value: 'America/Chicago'
-        - name: VPN_SERVICE_PROVIDER
-          value: 'custom'
-        - name: VPN_TYPE
-          value: 'wireguard'
-        - name: VPN_PORT_FORWARDING
-          value: 'on'
-        - name: VPN_PORT_FORWARDING_PROVIDER
-          valueFrom:
-            secretKeyRef:
-              name: qbittorrent-secrets
-              key: port_forwarding_provider
-        - name: FIREWALL_OUTBOUND_SUBNETS
-          value: '10.42.0.0/24,192.168.6.0/24'
-        - name: FIREWALL_INPUT_PORTS
-          value: '8080'
-        - name: DNS_UPSTREAM_RESOLVER_TYPE
-          value: 'doh'
-        volumeMounts:
-        - name: dev-net-tun
-          mountPath: /dev/net/tun
-        - name: wg-conf
-          mountPath: /gluetun/wireguard/wg0.conf
-          subPath: wg0.conf
-          readOnly: true
-      - name: curlpodtest
-        image: curlimages/curl
-        command: ['/bin/sh', '-c']
-        env:
-        - name: EXPECTED_IP
-          valueFrom:
-            secretKeyRef:
-              name: qbittorrent-secrets
-              key: external_ip
-        args:
-        - &check-ip |
-            echo "Waiting for VPN tunnel..."
-            echo "Your original IP is $EXPECTED_IP"
-            for i in $(seq 1 10); do
-              IP=$(curl -s --max-time 5 checkip.amazonaws.com)
-              if [ -n "$IP" ]; then
-                break
-              fi
-              echo "No IP yet, retrying in 3s... ($i/10)"
-              sleep 3
-            done
-
-            if [ -z "$IP" ]; then
-              echo "Could not determine public IP after retries. Exiting..."
-              exit 1
-            fi
-
-            if [ "$IP" = "$EXPECTED_IP" ]; then
-              echo "IP is not masked! Current IP is $IP. Exiting..."
-              exit 1
-            else
-              echo "IP is masked as $IP. Proceeding..."
-            fi
-      containers:
-      - name: qbittorrent
-        image: ghcr.io/hotio/qbittorrent
-        imagePullPolicy: IfNotPresent  
         volumeMounts:
         - name: config
           mountPath: /config
         - name: nfs-media
           mountPath: /nfs-media
+        - name: wg-conf
+          mountPath: /config/wireguard/wg0.conf
+          subPath: wg0.conf
+          readOnly: true
         ports:
         - containerPort: 8080
           name: qbitt-http
           protocol: TCP
         env:
-        - name: APP_HOST
-          value: "localhost"
         - name: TZ
           value: 'America/Chicago'
         - name: PUID
@@ -129,6 +136,15 @@ spec:
           value: '8080/tcp,8080/udp'
         - name: LIBTORRENT
           value: 'v1'
+        - name: VPN_ENABLED
+          value: 'true'
+        - name: VPN_PROVIDER
+          valueFrom:
+            secretKeyRef:
+              name: qbittorrent-secrets
+              key: port_forwarding_provider
+        - name: VPN_AUTO_PORT_FORWARD
+          value: 'true'
       volumes:
       - name: config
         persistentVolumeClaim:
