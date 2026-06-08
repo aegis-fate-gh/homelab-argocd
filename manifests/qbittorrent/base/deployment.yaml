@@ -122,7 +122,7 @@ spec:
         - name: PGID
           value: '1000'
         - name: WEBUI_PORTS
-          value: '8081/tcp,8081/udp'
+          value: '8080/tcp,8080/udp'
         - name: LIBTORRENT
           value: 'v1'
       volumes:
