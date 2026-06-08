@@ -108,7 +108,6 @@ spec:
         image: ghcr.io/hotio/qbittorrent:release-3170680
         imagePullPolicy: IfNotPresent
         securityContext:
-          privileged: true
           capabilities:
             add:
             - 'NET_ADMIN'
