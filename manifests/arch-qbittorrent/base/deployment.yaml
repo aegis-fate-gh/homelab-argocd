@@ -38,7 +38,6 @@ spec:
         - name: wg-conf
           mountPath: /config/wireguard/wg0.conf
           subPath: wg0.conf
-          readOnly: true
         ports:
         - containerPort: 8081
           name: archqbitt-http
