@@ -142,6 +142,8 @@ spec:
             secretKeyRef:
               name: qbittorrent-secrets
               key: port_forwarding_provider
+        - name: VPN_EXPOSE_PORTS_ON_LAN
+          value: '8080/tcp,8080/udp'
       volumes:
       - name: config
         persistentVolumeClaim:
