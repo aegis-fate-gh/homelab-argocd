@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arch-arch-qbittorrent
+  namespace: jovian-prod
+  labels:
+    app: arch-qbittorrent
+    service: media-backend
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: arch-qbittorrent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: arch-qbittorrent
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: arch-qbittorrent
+        image: binhex/arch-qbittorrentvpn
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            add:
+            - 'NET_ADMIN'
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: nfs-media
+          mountPath: /nfs-media
+        - name: wg-conf
+          mountPath: /config/wireguard/wg0.conf
+          subPath: wg0.conf
+          readOnly: true
+        ports:
+        - containerPort: 8081
+          name: archqbitt-http
+          protocol: TCP
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: WEBUI_PORT
+          value: '8081'
+        - name: VPN_ENABLED
+          value: 'yes'
+        - name: VPN_PROV
+          value: 'custom'
+        - name: VPN_CLIENT
+          value: 'wireguard'
+        - name: LAN_NETWORK
+          value: '10.42.0.0/24,192.168.6.0/24'
+        - name: NAME_SERVERS
+          value: '1.1.1.1,1.0.0.1'
+        - name: VPN_INPUT_PORTS
+          value: '8081/tcp,8081/udp'
+        - name: VPN_OUTPUT_PORTS
+          value: '8081'
+        - name: 
+          value: ''
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: arch-qbittorrent-pvc
+          readOnly: false
+      - name: nfs-media
+        persistentVolumeClaim:
+          claimName: arch-qbittorrent-smb-media-pvc
+      - name: dev-net-tun
+        hostPath:
+          path: /dev/net/tun
+      - name: wg-conf
+        secret:
+          secretName: qbittorrent-wg-conf
