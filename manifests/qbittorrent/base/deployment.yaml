@@ -142,8 +142,6 @@ spec:
             secretKeyRef:
               name: qbittorrent-secrets
               key: port_forwarding_provider
-        - name: VPN_AUTO_PORT_FORWARD
-          value: 'true'
       volumes:
       - name: config
         persistentVolumeClaim:
