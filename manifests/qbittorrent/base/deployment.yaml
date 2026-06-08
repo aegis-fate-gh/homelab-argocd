@@ -112,6 +112,10 @@ spec:
           mountPath: /config
         - name: nfs-media
           mountPath: /nfs-media
+        ports:
+        - containerPort: 8080
+          name: qbitt-http
+          protocol: TCP
         env:
         - name: APP_HOST
           value: "localhost"
