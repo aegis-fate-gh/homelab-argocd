@@ -27,6 +27,7 @@ spec:
         image: binhex/arch-qbittorrentvpn
         imagePullPolicy: IfNotPresent
         securityContext:
+          privileged: true
           capabilities:
             add:
             - 'NET_ADMIN'
