@@ -104,7 +104,11 @@ spec:
       containers:
       - name: qbittorrent
         image: ghcr.io/hotio/qbittorrent
-        imagePullPolicy: IfNotPresent 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: qbitt-http
+          protocol: TCP   
         volumeMounts:
         - name: config
           mountPath: /config
