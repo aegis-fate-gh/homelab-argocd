@@ -66,8 +66,6 @@ spec:
           value: '8081/tcp,8081/udp'
         - name: VPN_OUTPUT_PORTS
           value: '8081'
-        - name: 
-          value: ''
       volumes:
       - name: config
         persistentVolumeClaim:
