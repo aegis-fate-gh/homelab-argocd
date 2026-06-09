@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diagrams-repo-runner
+  name: cronjobs
   finalizers:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: jovian
   source:
-    path: manifests/diagrams-repo-runner/base
+    path: manifests/cronjobs/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:
-      recurse: false # Set to true to track manifests in subdirectories
+      recurse: true # Set to true to track manifests in subdirectories
       include: '{*.yaml,*.yml}' # Only process these file patterns
   syncPolicy:
     syncOptions:

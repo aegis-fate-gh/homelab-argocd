@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mmm-external-smb-pvc
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: smb-csi-mmm-syn
+  resources:
+    requests:
+      storage: 5Ti
+  volumeName: mmm-sync-external-smb

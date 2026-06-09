@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: diagrams-repo-runner
+  namespace: jovian-prod
+spec:
+  schedule: "0 22 * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            connection: standard
+          containers:
+          - name: media-metadata-manager
+            image: aegisfatedh/media-metadata-mover:main
+            imagePullPolicy: Always 
+            volumeMounts:
+            - name: media
+              mountPath: /media
+            env:
+            - name: TZ
+              value: 'America/Chicago'
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: UMASK
+              value: '002'
+            - name: INPUT_FOLDER
+              value: '/media/Camera Uploads/'
+            - name: OUTPUT_FOLDER
+              value: '/media/My Content/'
+          volumes:
+          - name: media
+            persistentVolumeClaim:
+              claimName: mmm-external-smb-pvc
+          restartPolicy: OnFailure
+      backoffLimit: 3
