@@ -5,7 +5,6 @@ metadata:
   namespace: jovian-prod
   annotations:
     argocd.argoproj.io/hook: PostSync
-    # 2. Deletes the old job resource before a new sync begins to prevent "already exists" errors
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
