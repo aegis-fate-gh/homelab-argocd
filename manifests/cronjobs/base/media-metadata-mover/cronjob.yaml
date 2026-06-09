@@ -36,5 +36,5 @@ spec:
           - name: media
             persistentVolumeClaim:
               claimName: mmm-external-smb-pvc
-          restartPolicy: OnFailure
-      backoffLimit: 3
+      restartPolicy: OnFailure
+    backoffLimit: 3
