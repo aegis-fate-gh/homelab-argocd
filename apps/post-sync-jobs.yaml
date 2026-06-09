@@ -14,9 +14,9 @@ spec:
     directory:
       recurse: false # Set to true to track manifests in subdirectories
       include: '{*.yaml,*.yml}' # Only process these file patterns
-    syncPolicy:
-      syncOptions:
-        - Replace=true
+  syncPolicy:
+    syncOptions:
+      - Replace=true
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
