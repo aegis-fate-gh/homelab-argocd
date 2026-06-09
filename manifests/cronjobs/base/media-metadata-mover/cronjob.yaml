@@ -37,6 +37,8 @@ spec:
               value: '/media/Camera Uploads/'
             - name: OUTPUT_FOLDER
               value: '/media/My Content/'
+            - name: DRY_RUN
+              value: 'false'
           volumes:
           - name: media
             persistentVolumeClaim:
