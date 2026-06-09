@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: jovian-prod
+  labels:
+    app: cloudflared
+    service: networking
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: cloudflared
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: cloudflared
+        image: cloudflare/cloudflared:latest
+        imagePullPolicy: Always
+        env:
+        - name: CF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: cloudflare-secrets
+              key: cloudflare_token
+        # Below via https://oopflow.medium.com/setup-install-cloudflare-tunnel-onto-kubernetes-for-high-availability-4337218d4efe
+        command: ["cloudflared", "tunnel", "--no-autoupdate", "run", "--token", "$CF_TOKEN"]
