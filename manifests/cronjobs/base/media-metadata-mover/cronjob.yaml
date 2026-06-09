@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: diagrams-repo-runner
+  name: media-metadata-manager
   namespace: jovian-prod
 spec:
   schedule: "0 22 * * *"
