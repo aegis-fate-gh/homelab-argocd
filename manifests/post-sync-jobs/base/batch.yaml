@@ -31,5 +31,3 @@ spec:
         - name: DRY_RUN
           value: "no"
       restartPolicy: OnFailure
-  # 3. Automatically cleans up the job tracking object inside Kubernetes after 1 hour
-  ttlSecondsAfterFinished: 3600
