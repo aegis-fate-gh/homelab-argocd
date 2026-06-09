@@ -33,5 +33,4 @@ spec:
                     key: git_username
               - name: DRY_RUN
                 value: "no"
-            restartPolicy: OnFailure
       backoffLimit: 3
