@@ -6,16 +6,22 @@ metadata:
 spec:
   schedule: "0 3 * * *"
   concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
+      backoffLimit: 3
+      activeDeadlineSeconds: 3600
+      ttlSecondsAfterFinished: 86400
       template:
         spec:
+          serviceAccountName: diagrams-repo-runner
           nodeSelector:
             connection: standard
           containers:
           - name: diagrams-repo-runner
             image: aegisfatedh/diagrams-repo-runner:main
-            imagePullPolicy: Always 
+            imagePullPolicy: Always
             env:
             - name: GIT_REPO
               valueFrom:
@@ -34,5 +40,4 @@ spec:
                   key: git_username
             - name: DRY_RUN
               value: "no"
-      restartPolicy: OnFailure
-    backoffLimit: 3
+          restartPolicy: OnFailure

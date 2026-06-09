@@ -6,8 +6,13 @@ metadata:
 spec:
   schedule: "0 22 * * *"
   concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
   jobTemplate:
     spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 7200
+      ttlSecondsAfterFinished: 86400
       template:
         spec:
           nodeSelector:
@@ -15,7 +20,7 @@ spec:
           containers:
           - name: media-metadata-manager
             image: aegisfatedh/media-metadata-mover:main
-            imagePullPolicy: Always 
+            imagePullPolicy: Always
             volumeMounts:
             - name: media
               mountPath: /media
@@ -36,5 +41,4 @@ spec:
           - name: media
             persistentVolumeClaim:
               claimName: mmm-external-smb-pvc
-      restartPolicy: OnFailure
-    backoffLimit: 3
+          restartPolicy: OnFailure
