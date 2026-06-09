@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: diagrams-repo-runner
+  name: post-sync-jobs
   finalizers:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: jovian
   source:
-    path: manifests/diagrams-repo-runner/base
+    path: manifests/post-sync-jobs/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:
