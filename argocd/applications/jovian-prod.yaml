@@ -1,13 +1,20 @@
-project: jovian
-source:
-  repoURL: https://github.com/aegis-fate-gh/homelab-argocd
-  path: apps
-  targetRevision: main
-destination:
-  server: https://kubernetes.default.svc
-  namespace: jovian-prod
-syncPolicy:
-  automated:
-    prune: false
-    selfHeal: true
-    enabled: true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jovian-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: apps
+    repoURL: https://github.com/aegis-fate-gh/homelab-argocd
+    targetRevision: main
+    directory:
+      recurse: false # Set to true to track manifests in subdirectories
+      include: '{*.yaml,*.yml}' # Only process these file patterns
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
