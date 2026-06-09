@@ -22,15 +22,36 @@ spec:
     spec:
       nodeSelector:
         connection: standard
+      securityContext:
+        sysctls:
+          # Allows ICMP traffic (ping, traceroute) to resources behind cloudflared.
+          - name: net.ipv4.ping_group_range
+            value: "65532 65532"
       containers:
       - name: cloudflared
         image: cloudflare/cloudflared:latest
         imagePullPolicy: Always
         env:
-        - name: CF_TOKEN
+        - name: TUNNEL_TOKEN
           valueFrom:
             secretKeyRef:
               name: cloudflare-secrets
               key: cloudflare_token
-        # Below via https://oopflow.medium.com/setup-install-cloudflare-tunnel-onto-kubernetes-for-high-availability-4337218d4efe
-        command: ["cloudflared", "tunnel", "--no-autoupdate", "run", "--token", "$CF_TOKEN"]
+        command:
+          - cloudflared
+          - tunnel
+          - --no-autoupdate
+          - --loglevel
+          - info
+          - --metrics
+          - 0.0.0.0:2000
+          - run
+        livenessProbe:
+          httpGet:
+            # Cloudflared has a /ready endpoint which returns 200 if and only if
+            # it has an active connection to Cloudflare's network.
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
