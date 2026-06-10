@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: immich
+  ports:
+    - port: 2283
+      targetPort: immich-http
+      protocol: TCP
+      name: immich-http

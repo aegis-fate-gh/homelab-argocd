@@ -1,19 +1,19 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: CHANGE_ME
+  name: immich-backup
   namespace: jovian-prod
 spec:
   # The PVC to be backed up
-  sourcePVC: CHANGE_ME
+  sourcePVC: immich-pvc
   trigger:
-    # Take a backup every day at 1am to avoid 2am internal DB backups
-    schedule: "CHANGE_ME
+    # Take a backup every day at 11pm
+    schedule: "0 23 * * *"
   restic:
     # Prune the repository (repack to free space) every 2 weeks
     pruneIntervalDays: 14
     # Name of the Secret with the connection information
-    repository: CHANGE_ME
+    repository: restic-immich
     # Retention policy for backups
     retain:
       daily: 7

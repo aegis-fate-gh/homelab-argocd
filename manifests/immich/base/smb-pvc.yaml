@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-external-smb-pvc
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb-csi-immich-syn
+  resources:
+    requests:
+      storage: 5Ti
+  volumeName: immich-external-smb
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-upload-smb-pvc
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb-csi-immich-silo
+  resources:
+    requests:
+      storage: 72Ti
+  volumeName: immich-upload-smb
