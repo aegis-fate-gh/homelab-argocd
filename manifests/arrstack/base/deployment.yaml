@@ -22,6 +22,13 @@ spec:
     spec:
       nodeSelector:
         connection: standard
+      resources:
+        requests:
+          cpu: "10"
+          memory: "1500Mi"
+        limits:
+          cpu: "50"
+          memory: "2000Mi"
       containers:
       - name: bazarr
         image: ghcr.io/hotio/bazarr:latest
