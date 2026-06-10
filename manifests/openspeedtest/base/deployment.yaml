@@ -26,6 +26,13 @@ spec:
       - name: openspeedtest
         image: openspeedtest/latest
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "50m"
+          limits:
+            memory: "100Mi"
+            cpu: "300m"
         ports:
         - containerPort: 3000
           name: http
