@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plex-alloy-config
+  namespace: jovian-prod
+data:
+  config.alloy: |
+    local.file_match "plex_logs" {
+      path_targets = [{
+        "__path__" = "/plex/Library/Application Support/Plex Media Server/Logs/*.log",
+        "job"    = "plex_alloy",
+        "hostname" = "plex_alloy",
+      },]
+      sync_period = "5s"
+    }
+
+    loki.source.file "plex_log_scraper" {
+      targets    = local.file_match.plex_logs.targets
+      forward_to = [loki.write.grafana_loki.receiver]
+      tail_from_end = true
+    }
+
+    loki.write "grafana_loki" {
+      endpoint {
+        url = "http://192.168.6.195:3100/loki/api/v1/push"
+      }
+    }

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: CHANGE_ME
+  name: plex-smb-media-pvc
   namespace: jovian-prod
 spec:
   accessModes:
@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 72Ti
-  volumeName: CHANGE_ME
+  volumeName: plex-smb-media

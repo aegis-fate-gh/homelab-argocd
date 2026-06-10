@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: CHANGE_ME
+  name: plex-pvc
   namespace: jovian-prod
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: smb-csi-media
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
   resources:
     requests:
-      storage: 72Ti
-  volumeName: CHANGE_ME
+      storage: 40Gi

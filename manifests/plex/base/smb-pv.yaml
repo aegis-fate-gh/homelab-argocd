@@ -3,10 +3,10 @@ kind: PersistentVolume
 metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: smb.csi.k8s.io
-  name: CHANGE_ME
+  name: plex-smb-media
 spec:
   capacity:
-    storage: CHANGE_ME
+    storage: 72Ti
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -18,9 +18,9 @@ spec:
     driver: smb.csi.k8s.io
     # volumeHandle format: {smb-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: CHANGE_ME
+    volumeHandle: 192.168.100.162/media
     volumeAttributes:
-      source: CHANGE_ME
+      source: //192.168.100.162/media
     nodeStageSecretRef:
-      name: CHANGE_ME
+      name: smb-media-manangers
       namespace: jovian-prod
