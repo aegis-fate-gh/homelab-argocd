@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: kometa
   namespace: jovian-prod
+  generateName: kometa-
   labels:
     app: kometa
     service: media-backend
