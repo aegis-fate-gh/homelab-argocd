@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: n8n-pvc
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
+  resources:
+    requests:
+      storage: 20Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: n8n-db-pvc
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
+  resources:
+    requests:
+      storage: 20Gi
