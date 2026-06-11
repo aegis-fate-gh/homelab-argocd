@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: storage-classes
 spec:
-  project: jovian
+  project: default
   source:
     path: shared/storage-classes
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
