@@ -108,9 +108,9 @@ data:
       save_report: true
 
     plex:                                # Can be individually specified per library as well; REQUIRED for the script to run
-      url: "$PLEX_URL"
-      token: "$PLEX_TOKEN"
+      url: ${PLEX_URL}
+      token: "${PLEX_TOKEN}
 
     tmdb:                                # REQUIRED for the script to run
-      apikey: "$TMDB_KEY"
+      apikey: ${TMDB_KEY}
       language: en
