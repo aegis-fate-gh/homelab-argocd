@@ -17,3 +17,7 @@ spec:
   destination:
     namespace: jovian-prod
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      enabled: true
