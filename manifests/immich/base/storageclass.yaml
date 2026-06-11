@@ -1,0 +1,26 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb-csi-immich-silo
+provisioner: smb.csi.k8s.io
+parameters:
+  source: //192.168.100.162/immich
+  csi.storage.k8s.io/node-stage-secret-name: smb-silo-immich
+  csi.storage.k8s.io/node-stage-secret-namespace: jovian-prod
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb-csi-immich-syn
+provisioner: smb.csi.k8s.io
+parameters:
+  source: //192.168.100.42/Dropbox
+  csi.storage.k8s.io/node-stage-secret-name: smb-syn-immich
+  csi.storage.k8s.io/node-stage-secret-namespace: jovian-prod
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
+allowVolumeExpansion: true

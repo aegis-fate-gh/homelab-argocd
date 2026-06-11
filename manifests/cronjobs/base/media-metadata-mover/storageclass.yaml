@@ -1,0 +1,12 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb-csi-mmm-syn
+provisioner: smb.csi.k8s.io
+parameters:
+  source: //192.168.100.42/Dropbox
+  csi.storage.k8s.io/node-stage-secret-name: smb-syn-mmm
+  csi.storage.k8s.io/node-stage-secret-namespace: jovian-prod
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
+allowVolumeExpansion: true
