@@ -1,0 +1,75 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kometa
+  namespace: jovian-prod
+spec:
+  schedule: "0 3 * * 6" # Once a week on Saturday at 3am
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 3600
+      ttlSecondsAfterFinished: 86400
+      template:
+        spec:
+          nodeSelector:
+            connection: standard
+          containers:
+          - name: kometa
+            image: kometateam/kometa:v2.3.1
+            imagePullPolicy: IfNotPresent 
+            args: ["--run", "--read-only-config"]
+            volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: kometa-config
+              mountPath: /config/config.yml
+              subPath: config.yml
+            - name: concert-config
+              mountPath: /config/concerts.yml
+              subPath: concerts.yml
+            - name: web-video-config
+              mountPath: /config/web_video.yml
+              subPath: web_video.yml
+            env:
+            - name: TZ
+              value: 'America/Chicago'
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: UMASK
+              value: '002'
+            - name: PLEX_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kometa-secrets
+                  key: plex_url
+            - name: PLEX_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: kometa-secrets
+                  key: plex_token
+            - name: TMDB_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: kometa-secrets
+                  key: tmdb_key
+          restartPolicy: Never
+          volumes:
+          - name: config
+            persistentVolumeClaim:
+              claimName: kometa-pvc
+              readOnly: false
+          - name: kometa-config
+            configMap:
+              name: kometa-config
+          - name: concert-config
+            configMap:
+              name: kometa-concerts-config
+          - name: web-video-config
+            configMap:
+              name: kometa-web-video-config
