@@ -20,6 +20,8 @@ spec:
         imagePullPolicy: IfNotPresent 
         args: ["--run", "--read-only-config"]
         volumeMounts:
+        - name: config
+          mountPath: /config
         - name: kometa-config
           mountPath: /config/config.yml
           subPath: config.yml
@@ -55,6 +57,10 @@ spec:
               key: tmdb_key
       restartPolicy: Never
       volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: kometa-pvc
+          readOnly: false
       - name: kometa-config
         configMap:
           name: kometa-config
