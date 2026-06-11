@@ -43,21 +43,6 @@ spec:
               value: '1000'
             - name: UMASK
               value: '002'
-            - name: PLEX_URL
-              valueFrom:
-                secretKeyRef:
-                  name: kometa-secrets
-                  key: plex_url
-            - name: PLEX_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: kometa-secrets
-                  key: plex_token
-            - name: TMDB_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: kometa-secrets
-                  key: tmdb_key
           restartPolicy: Never
           volumes:
           - name: config
