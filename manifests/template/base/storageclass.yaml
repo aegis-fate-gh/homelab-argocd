@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: StorageClass
+metadata:
+  name: CHANGE_ME
+provisioner: smb.csi.k8s.io
+parameters:
+  source: CHANGE_ME
+  csi.storage.k8s.io/node-stage-secret-name: CHANGE_ME
+  csi.storage.k8s.io/node-stage-secret-namespace: CHANGE_ME
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
+allowVolumeExpansion: true

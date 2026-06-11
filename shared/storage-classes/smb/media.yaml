@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: StorageClass
+metadata:
+  name: smb-csi-media
+provisioner: smb.csi.k8s.io
+parameters:
+  source: //192.168.100.162/media
+  csi.storage.k8s.io/node-stage-secret-name: smb-media-manangers
+  csi.storage.k8s.io/node-stage-secret-namespace: jovian-prod
+volumeBindingMode: Immediate
+reclaimPolicy: Retain
+allowVolumeExpansion: true
