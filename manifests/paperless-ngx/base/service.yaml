@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: paper-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: paperless
+  ports:
+    - port: 8000
+      targetPort: paper-http
+      protocol: TCP
+      name: paper-http
