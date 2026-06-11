@@ -109,7 +109,7 @@ data:
 
     plex:                                # Can be individually specified per library as well; REQUIRED for the script to run
       url: ${PLEX_URL}
-      token: "${PLEX_TOKEN}
+      token: ${PLEX_TOKEN}
 
     tmdb:                                # REQUIRED for the script to run
       apikey: ${TMDB_KEY}
