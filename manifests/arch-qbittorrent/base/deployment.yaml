@@ -75,6 +75,13 @@ spec:
           value: '8081/tcp,8081/udp'
         - name: VPN_OUTPUT_PORTS
           value: '8081'
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "50m"
+          limits:
+            memory: "12Gi"
+            cpu: "150m"
       volumes:
       - name: config
         persistentVolumeClaim:
