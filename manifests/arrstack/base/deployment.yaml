@@ -44,6 +44,13 @@ spec:
           value: '1000'
         - name: UMASK
           value: '002'
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "10m"
+          limits:
+            memory: "500Mi"
+            cpu: "25m"
       - name: prowlarr
         image: ghcr.io/hotio/prowlarr:latest
         imagePullPolicy: Always
@@ -63,6 +70,13 @@ spec:
           value: '1000'
         - name: UMASK
           value: '002'
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "10m"
+          limits:
+            memory: "500Mi"
+            cpu: "25m"
       - name: radarr
         image: ghcr.io/hotio/radarr:latest
         imagePullPolicy: Always
@@ -84,6 +98,13 @@ spec:
           value: '1000'
         - name: UMASK
           value: '002'
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: "10m"
+          limits:
+            memory: "600Mi"
+            cpu: "25m"
       - name: sonarr
         image: ghcr.io/hotio/sonarr:latest
         imagePullPolicy: Always
@@ -105,6 +126,13 @@ spec:
           value: '1000'
         - name: UMASK
           value: '002'
+        resources:
+          requests:
+            memory: "700Mi"
+            cpu: "10m"
+          limits:
+            memory: "1000Mi"
+            cpu: "25m"
       - name: flaresolverr
         image: ghcr.io/flaresolverr/flaresolverr:latest
         imagePullPolicy: IfNotPresent
@@ -128,6 +156,13 @@ spec:
         volumeMounts:
         - name: cleanuparr-config
           mountPath: /config
+        resources:
+          requests:
+            memory: "450Mi"
+            cpu: "10m"
+          limits:
+            memory: "600Mi"
+            cpu: "25m"
       volumes:
       - name: bazarr-config
         persistentVolumeClaim:
