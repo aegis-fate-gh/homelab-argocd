@@ -40,6 +40,13 @@ spec:
           value: '1000'
         - name: PGID
           value: '1000'
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "25m"
+          limits:
+            memory: "500Mi"
+            cpu: "50m"
       volumes:
       - name: config
         persistentVolumeClaim:

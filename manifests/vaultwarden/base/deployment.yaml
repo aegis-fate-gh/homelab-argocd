@@ -46,6 +46,13 @@ spec:
           value: "https://vaultwarden.jovian.local.sch-apps.com"
         - name: SIGNUPS_ALLOWED
           value: "true"
+        resources:
+          requests:
+            memory: "75Mi"
+            cpu: "10m"
+          limits:
+            memory: "150Mi"
+            cpu: "25m"
       volumes:
       - name: config
         persistentVolumeClaim:

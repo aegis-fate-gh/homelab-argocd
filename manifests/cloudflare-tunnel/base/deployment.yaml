@@ -37,6 +37,13 @@ spec:
             secretKeyRef:
               name: cloudflare-secrets
               key: cloudflare_token
+        resources:
+          requests:
+            memory: "25Mi"
+            cpu: "5m"
+          limits:
+            memory: "100Mi"
+            cpu: "15m"
         command:
           - cloudflared
           - tunnel

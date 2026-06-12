@@ -41,6 +41,13 @@ spec:
             secretKeyRef:
               name: homarr-encryption-key
               key: encryption_key
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: "25m"
+          limits:
+            memory: "600Mi"
+            cpu: "50m"
       volumes:
       - name: config
         persistentVolumeClaim:

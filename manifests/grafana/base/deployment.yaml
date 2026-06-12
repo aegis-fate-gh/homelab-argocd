@@ -39,6 +39,13 @@ spec:
         env:
         - name: TZ
           value: 'America/Chicago'
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "25m"
+          limits:
+            memory: "500Mi"
+            cpu: "50m"
       volumes:
       - name: config
         persistentVolumeClaim:

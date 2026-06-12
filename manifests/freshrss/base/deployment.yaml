@@ -42,6 +42,13 @@ spec:
           value: '1000'
         - name: UMASK
           value: '002'
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          limits:
+            memory: "100Mi"
+            cpu: "25m"
       volumes:
       - name: config
         persistentVolumeClaim:
