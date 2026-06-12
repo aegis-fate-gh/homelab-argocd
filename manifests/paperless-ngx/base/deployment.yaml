@@ -34,6 +34,14 @@ spec:
         - name: paperless-config
           mountPath: /data
           subPath: redis
+        resources:
+          requests:
+            memory: "25Mi"
+            cpu: "15m"
+          limits:
+            memory: "50Mi"
+            cpu: "30m"
+
       - name: postgres
         image: docker.io/library/postgres:18
         imagePullPolicy: IfNotPresent
@@ -63,6 +71,14 @@ spec:
             secretKeyRef:
               name: paperless-secrets
               key: paperless_postgres_password
+        resources:
+          requests:
+            memory: "75Mi"
+            cpu: "50m"
+          limits:
+            memory: "150Mi"
+            cpu: "100m"
+
       - name: webserver
         image: ghcr.io/paperless-ngx/paperless-ngx:latest
         imagePullPolicy: Always
@@ -119,6 +135,14 @@ spec:
         - name: paperless-config
           mountPath: /usr/src/paperless/consume
           subPath: consume
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "50m"
+          limits:
+            memory: "1500Mi"
+            cpu: "100m"
+
       - name: gotenberg
         image: docker.io/gotenberg/gotenberg:8.25
         imagePullPolicy: IfNotPresent
@@ -130,13 +154,29 @@ spec:
           - "gotenberg"
           - "--chromium-disable-javascript=true"
           - "--chromium-allow-list=file:///tmp/.*"
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "50m"
+          limits:
+            memory: "400Mi"
+            cpu: "100m"
+
       - name: tika
         image: docker.io/apache/tika:latest
         imagePullPolicy: Always
         ports:
-          - containerPort: 9998
-            name: paper-tika
-            protocol: TCP
+        - containerPort: 9998
+          name: paper-tika
+          protocol: TCP
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "50m"
+          limits:
+            memory: "300Mi"
+            cpu: "100m"
+
       volumes:
       - name: paperless-config
         persistentVolumeClaim:
