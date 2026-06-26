@@ -47,10 +47,10 @@ spec:
         resources:
           requests:
             memory: "300Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "500Mi"
-            cpu: "25m"
+            cpu: "1000m"
       - name: prowlarr
         image: ghcr.io/hotio/prowlarr:latest
         imagePullPolicy: Always
@@ -73,10 +73,10 @@ spec:
         resources:
           requests:
             memory: "300Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "500Mi"
-            cpu: "25m"
+            cpu: "1000m"
       - name: radarr
         image: ghcr.io/hotio/radarr:latest
         imagePullPolicy: Always
@@ -101,10 +101,10 @@ spec:
         resources:
           requests:
             memory: "400Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "600Mi"
-            cpu: "25m"
+            cpu: "1000m"
       - name: sonarr
         image: ghcr.io/hotio/sonarr:latest
         imagePullPolicy: Always
@@ -129,10 +129,10 @@ spec:
         resources:
           requests:
             memory: "700Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "1000Mi"
-            cpu: "25m"
+            cpu: "1000m"
       - name: flaresolverr
         image: ghcr.io/flaresolverr/flaresolverr:latest
         imagePullPolicy: IfNotPresent
@@ -159,10 +159,10 @@ spec:
         resources:
           requests:
             memory: "450Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "600Mi"
-            cpu: "25m"
+            cpu: "1000m"
       volumes:
       - name: bazarr-config
         persistentVolumeClaim:
