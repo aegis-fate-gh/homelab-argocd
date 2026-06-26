@@ -27,6 +27,12 @@ spec:
             env:
             - name: TZ
               value: 'America/Chicago'
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
+            - name: UMASK
+              value: '002'
             - name: INPUT_FOLDER
               value: '/media/Camera Uploads/'
             - name: OUTPUT_FOLDER
