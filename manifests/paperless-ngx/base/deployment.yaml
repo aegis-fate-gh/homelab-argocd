@@ -138,10 +138,10 @@ spec:
         resources:
           requests:
             memory: "1Gi"
-            cpu: "50m"
+            cpu: "250m"
           limits:
             memory: "1500Mi"
-            cpu: "100m"
+            cpu: "500m"
 
       - name: gotenberg
         image: docker.io/gotenberg/gotenberg:8.25

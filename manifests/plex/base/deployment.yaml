@@ -44,10 +44,10 @@ spec:
         resources:
           requests:
             memory: "80Mi"
-            cpu: "10m"
+            cpu: "125m"
           limits:
             memory: "100Mi"
-            cpu: "25m"
+            cpu: "250m"
       - name: plex
         image: plexinc/pms-docker:latest
         imagePullPolicy: Always
