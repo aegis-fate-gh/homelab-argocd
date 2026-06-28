@@ -83,7 +83,7 @@ spec:
             cpu: "1000m"
 
       # Immich Machine learning
-      - name: machine-learning
+      - name: immich-machine-learning
         image: ghcr.io/immich-app/immich-machine-learning:main-cuda
         imagePullPolicy: Always
         Ports:
@@ -112,7 +112,7 @@ spec:
             cpu: "500m"
 
       # Immich Redis
-      - name: redis
+      - name: immich-redis
         image: docker.io/redis:6.2-alpine@sha256:e3b17ba9479deec4b7d1eeec1548a253acc5374d68d3b27937fcfe4df8d18c7e
         imagePullPolicy: IfNotPresent
         ports:
@@ -137,7 +137,7 @@ spec:
             cpu: "50m"
 
       # Immich Database
-      - name: database
+      - name: immich-database
         image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
         imagePullPolicy: IfNotPresent
         env:
@@ -184,10 +184,7 @@ spec:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "10m"
-          limits:
-            memory: "3Gi"
-            cpu: "25m"
+            cpu: "100m"
 
       volumes:
       - name: immich-config
