@@ -81,9 +81,6 @@ spec:
           requests:
             memory: "4Gi"
             cpu: "1000m"
-          limits:
-            memory: "6Gi"
-            cpu: "5000m"
 
       # Immich Machine learning
       - name: machine-learning
@@ -113,9 +110,6 @@ spec:
           requests:
             memory: "600Mi"
             cpu: "500m"
-          limits:
-            memory: "1Gi"
-            cpu: "5000m"
 
       # Immich Redis
       - name: redis
