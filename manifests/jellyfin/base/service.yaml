@@ -13,6 +13,10 @@ spec:
     targetPort: jellyfin
     name: jellyfin
     protocol: TCP
+  - port: 7359
+    targetPort: autodiscovery
+    name: autodiscovery
+    protocol: UDP
   selector:
     app: jellyfin
   type: LoadBalancer
