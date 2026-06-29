@@ -23,7 +23,7 @@ spec:
       nodeSelector:
         connection: standard
       containers:
-      - name: redis
+      - name: ngx-redis
         image: docker.io/library/redis:8
         imagePullPolicy: IfNotPresent
         ports:
@@ -42,7 +42,7 @@ spec:
             memory: "50Mi"
             cpu: "30m"
 
-      - name: postgres
+      - name: ngx-postgres
         image: docker.io/library/postgres:18
         imagePullPolicy: IfNotPresent
         ports:
@@ -79,7 +79,7 @@ spec:
             memory: "150Mi"
             cpu: "100m"
 
-      - name: webserver
+      - name: ngx-webserver
         image: ghcr.io/paperless-ngx/paperless-ngx:latest
         imagePullPolicy: Always
         ports:
@@ -139,9 +139,6 @@ spec:
           requests:
             memory: "1Gi"
             cpu: "250m"
-          limits:
-            memory: "1500Mi"
-            cpu: "500m"
 
       - name: gotenberg
         image: docker.io/gotenberg/gotenberg:8.25

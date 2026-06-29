@@ -81,7 +81,7 @@ spec:
             cpu: "500m"
           limits:
             memory: "12Gi"
-            cpu: "2000m"
+
       volumes:
       - name: config
         persistentVolumeClaim:

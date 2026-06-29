@@ -50,7 +50,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "500Mi"
-            cpu: "1000m"
+
       - name: prowlarr
         image: ghcr.io/hotio/prowlarr:latest
         imagePullPolicy: Always
@@ -76,7 +76,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "500Mi"
-            cpu: "1000m"
+
       - name: radarr
         image: ghcr.io/hotio/radarr:latest
         imagePullPolicy: Always
@@ -104,7 +104,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "600Mi"
-            cpu: "1000m"
+
       - name: sonarr
         image: ghcr.io/hotio/sonarr:latest
         imagePullPolicy: Always
@@ -132,7 +132,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "1000Mi"
-            cpu: "1000m"
+
       - name: flaresolverr
         image: ghcr.io/flaresolverr/flaresolverr:latest
         imagePullPolicy: IfNotPresent
@@ -162,7 +162,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "600Mi"
-            cpu: "1000m"
+
       volumes:
       - name: bazarr-config
         persistentVolumeClaim:
