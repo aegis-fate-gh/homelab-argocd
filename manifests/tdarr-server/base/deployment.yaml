@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr
+  namespace: jovian-prod
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: tdarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tdarr
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: tdarr
+        image: ghcr.io/haveagitgat/tdarr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8265
+          name: webui
+        - containerPort: 8266
+          name: server  
+        volumeMounts:
+        - name: config
+          mountPath: /app/server
+          subPath: server
+        - name: config
+          mountPath: /app/logs
+          subPath: logs
+        - name: smb-media
+          mountPath: /media
+        - name: smb-media
+          mountPath: /app/configs
+          subPath: /media/tdarr/configs
+        - name: smb-media
+          mountPath: /temp
+          subPath: /media/tdarr/cache
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+        - name: PUID
+          value: '1000'
+        - name: PGID
+          value: '1000'
+        - name: serverIP
+          value: "0.0.0.0"
+        - name: serverPort
+          value: "8266"
+        - name: webUIPort
+          value: "8265"
+        - name: internalNode
+          value: "false"
+        - name: inContainer
+          value: "true"
+        - name: ffmpegVersion
+          value: "7"
+        - name: auth
+          value: "false"
+        - name: maxLogSizeMB
+          value: "10"
+        - name: cronPluginUpdate
+          value: ""  
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: tdarr-pvc
+      - name: smb-media
+        persistentVolumeClaim:
+          claimName: tdarr-smb-media-pvc

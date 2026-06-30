@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr
+  namespace: jovian-prod
+  annotations:
+    metallb.io/address-pool: prod-pool
+    metallb.io/loadBalancerIPs: 192.168.6.230
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - port: 8265
+    targetPort: webui
+    name: webui
+    protocol: TCP
+  - port: 8266
+    targetPort: server
+    name: server
+    protocol: TCP
+  selector:
+    app: tdarr
+  type: LoadBalancer
