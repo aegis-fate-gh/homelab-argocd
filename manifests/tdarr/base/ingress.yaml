@@ -18,4 +18,4 @@ spec:
               service:
                 name:  tdarr
                 port:
-                  number: 8065
+                  number: 8265
