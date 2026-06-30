@@ -39,10 +39,10 @@ spec:
           mountPath: /media
         - name: smb-media
           mountPath: /app/configs
-          subPath: /media/tdarr/configs
+          subPath: media/tdarr/configs
         - name: smb-media
           mountPath: /temp
-          subPath: /media/tdarr/cache
+          subPath: media/tdarr/cache
         env:
         - name: TZ
           value: 'America/Chicago'
