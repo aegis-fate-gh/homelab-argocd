@@ -49,10 +49,10 @@ spec:
         resources:
           requests:
             memory: "75Mi"
-            cpu: "10m"
+            cpu: "100m"
           limits:
             memory: "150Mi"
-            cpu: "25m"
+            cpu: "250m"
       volumes:
       - name: config
         persistentVolumeClaim:

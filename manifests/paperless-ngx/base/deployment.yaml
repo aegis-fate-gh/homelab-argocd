@@ -140,7 +140,7 @@ spec:
             memory: "1Gi"
             cpu: "250m"
 
-      - name: gotenberg
+      - name: ngx-gotenberg
         image: docker.io/gotenberg/gotenberg:8.25
         imagePullPolicy: IfNotPresent
         ports:
@@ -155,11 +155,8 @@ spec:
           requests:
             memory: "250Mi"
             cpu: "50m"
-          limits:
-            memory: "400Mi"
-            cpu: "100m"
 
-      - name: tika
+      - name: ngx-tika
         image: docker.io/apache/tika:latest
         imagePullPolicy: Always
         ports:
@@ -170,9 +167,6 @@ spec:
           requests:
             memory: "200Mi"
             cpu: "50m"
-          limits:
-            memory: "300Mi"
-            cpu: "100m"
 
       volumes:
       - name: paperless-config
