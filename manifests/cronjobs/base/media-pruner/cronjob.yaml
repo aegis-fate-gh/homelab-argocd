@@ -21,7 +21,7 @@ spec:
           - name: media-pruner
             image: busybox:latest
             command: ["/bin/sh", "-c"] 
-            args: ["find /media/downloads/completed/tv-sonarr -mtime +7 && find /media/downloads/completed/radarr -mtime +7"]
+            args: ["find /media/downloads/completed/tv-sonarr -mtime +7 -exec rm -rf {} + && find /media/downloads/completed/radarr -mtime +7 -exec rm -rf {} +"]
             imagePullPolicy: Always
             volumeMounts:
             - name: media
