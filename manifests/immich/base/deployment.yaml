@@ -24,7 +24,7 @@ spec:
 
       # Immich Front End
       - name: immich
-        image: ghcr.io/immich-app/immich-server:v3.0.1
+        image: ghcr.io/immich-app/immich-server:v3.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 2283
