@@ -109,11 +109,16 @@ spec:
             secretKeyRef:
               name: paperless-secrets
               key: paperless_postgres_user
-        - name: PAPERLESS_DBPASS
+        - name: PAPERLESS_SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: paperless-secrets
-              key: paperless_postgres_password
+              key: paperless_secret_key
+        - name: PAPERLESS_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: paperless-secrets
+              key: paperless_postgres_db
         - name: PAPERLESS_TIKA_ENABLED
           value: '1'
         - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
