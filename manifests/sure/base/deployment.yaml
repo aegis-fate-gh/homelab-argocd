@@ -115,10 +115,10 @@ spec:
       volumes:
         - name: app-storage
           persistentVolumeClaim:
-            claimName: sure_app
+            claimName: sure-app
         - name: postgres-data
           persistentVolumeClaim:
-            claimName: sure_postgres
+            claimName: sure-postgres
         - name: redis-data
           persistentVolumeClaim:
-            claimName: sure_redis
+            claimName: sure-redis

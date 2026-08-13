@@ -1,11 +1,11 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: sure_app
+  name: sure-app
   namespace: jovian-prod
 spec:
   # The PVC to be backed up
-  sourcePVC: sure_app
+  sourcePVC: sure-app
   trigger:
     # Take a backup every day at 4am
     schedule: "0 4 * * *"
@@ -25,10 +25,10 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: sure_postgres
+  name: sure-postgres
   namespace: jovian-prod
 spec:
-  sourcePVC: sure_postgres
+  sourcePVC: sure-postgres
   trigger:
     schedule: "0 4 * * *"
   restic:
@@ -43,10 +43,10 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: sure_redis
+  name: sure-redis
   namespace: jovian-prod
 spec:
-  sourcePVC: sure_redis
+  sourcePVC: sure-redis
   trigger:
     schedule: "0 4 * * *"
   restic:

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sure_app
+  name: sure-app
   namespace: jovian-prod
 spec:
   accessModes:
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sure_postgres
+  name: sure-postgres
   namespace: jovian-prod
 spec:
   accessModes:
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sure_redis
+  name: sure-redis
   namespace: jovian-prod
 spec:
   accessModes:
