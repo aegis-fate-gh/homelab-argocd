@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sure
+  namespace: jovian-prod
+  labels:
+    app: sure
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: sure
+  template:
+    metadata:
+      labels:
+        app: sure
+    spec:
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+          - 1.1.1.1
+      containers:
+        - name: db
+          image: postgres:16
+          envFrom:
+            - configMapRef:
+                name: sure-config
+            - secretRef:
+                name: sure-secrets
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 5
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+ 
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+          readinessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 5
+          livenessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+ 
+        - name: web
+          image: ghcr.io/we-promise/sure:stable
+          envFrom:
+            - configMapRef:
+                name: sure-config
+            - secretRef:
+                name: sure-secrets
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: app-storage
+              mountPath: /rails/storage
+          startupProbe:
+            httpGet:
+              path: /up
+              port: 3000
+            failureThreshold: 30
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /up
+              port: 3000
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /up
+              port: 3000
+            periodSeconds: 20
+ 
+        - name: worker
+          image: ghcr.io/we-promise/sure:stable
+          command: ["bundle", "exec", "sidekiq"]
+          envFrom:
+            - configMapRef:
+                name: sure-config
+            - secretRef:
+                name: sure-secrets
+          volumeMounts:
+            - name: app-storage
+              mountPath: /rails/storage
+ 
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: sure_app
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: sure_postgres
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: sure_redis

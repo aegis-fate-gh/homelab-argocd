@@ -8,7 +8,7 @@ spec:
   sourcePVC: CHANGE_ME
   trigger:
     # Take a backup every day at 1am to avoid 2am internal DB backups
-    schedule: "CHANGE_ME
+    schedule: "CHANGE_ME"
   restic:
     # Prune the repository (repack to free space) every 2 weeks
     pruneIntervalDays: 14

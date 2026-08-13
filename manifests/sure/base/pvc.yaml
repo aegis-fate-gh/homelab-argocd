@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sure_app
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sure_postgres
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sure_redis
+  namespace: jovian-prod
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: k8s-cephfs
+  resources:
+    requests:
+      storage: 1Gi
