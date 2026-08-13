@@ -80,6 +80,8 @@ spec:
                 name: sure-secrets
           ports:
             - containerPort: 3000
+              name: sure-http
+              protocol: TCP
           volumeMounts:
             - name: app-storage
               mountPath: /rails/storage

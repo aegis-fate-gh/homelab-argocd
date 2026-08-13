@@ -16,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name:  sure
+                name: sure
                 port:
                   number: 3000
