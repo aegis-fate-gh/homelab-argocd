@@ -143,6 +143,7 @@ spec:
         env:
         - name: TZ
           value: 'America/Chicago'
+
       - name: cleanuparr
         image: ghcr.io/cleanuparr/cleanuparr:latest
         imagePullPolicy: Always
