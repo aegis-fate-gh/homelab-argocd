@@ -75,20 +75,6 @@ spec:
           volumeMounts:
             - name: backups
               mountPath: /data/backup
-          # Adjust the path below if Tracearr's real health endpoint differs -
-          # this is an assumption, not a confirmed value.
-          readinessProbe:
-            httpGet:
-              path: /api/health
-              port: http
-            initialDelaySeconds: 15
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /api/health
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 20
           resources:
             requests:
               cpu: 100m
