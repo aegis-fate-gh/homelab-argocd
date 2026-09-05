@@ -106,6 +106,10 @@ spec:
             - -c
             - max_connections=150
           env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
             - name: POSTGRES_USER
               value: "tracearr"
             - name: POSTGRES_DB
