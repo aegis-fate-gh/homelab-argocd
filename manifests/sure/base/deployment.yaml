@@ -17,6 +17,8 @@ spec:
       labels:
         app: sure
     spec:
+      nodeSelector:
+        connection: standard
       dnsConfig:
         nameservers:
           - 8.8.8.8
