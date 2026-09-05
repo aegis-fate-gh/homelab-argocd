@@ -19,6 +19,8 @@ spec:
     spec:
       nodeSelector:
         connection: standard
+      securityContext:
+        fsGroup: 1000
       containers:
         - name: tracearr
           image: ghcr.io/connorgallopo/tracearr:latest
@@ -88,6 +90,9 @@ spec:
 
         - name: timescale
           image: timescale/timescaledb-ha:pg18.4-ts2.29.1
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
           args:
             - postgres
             - -c
@@ -101,10 +106,6 @@ spec:
             - -c
             - max_connections=150
           env:
-            - name: PUID
-              value: '1000'
-            - name: PGID
-              value: '1000'
             - name: POSTGRES_USER
               value: "tracearr"
             - name: POSTGRES_DB
