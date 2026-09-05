@@ -19,8 +19,6 @@ spec:
     spec:
       nodeSelector:
         connection: standard
-      securityContext:
-        fsGroup: 1000
       containers:
         - name: tracearr
           image: ghcr.io/connorgallopo/tracearr:latest
@@ -28,6 +26,10 @@ spec:
             - containerPort: 3000
               name: http
           env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
             - name: NODE_ENV
               value: "production"
             - name: PORT
@@ -99,6 +101,10 @@ spec:
             - -c
             - max_connections=150
           env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
             - name: POSTGRES_USER
               value: "tracearr"
             - name: POSTGRES_DB
@@ -141,6 +147,11 @@ spec:
         - name: redis
           image: redis:8-alpine
           args: ["redis-server", "--appendonly", "yes"]
+          env:
+            - name: PUID
+              value: '1000'
+            - name: PGID
+              value: '1000'
           ports:
             - containerPort: 6379
               name: redis
