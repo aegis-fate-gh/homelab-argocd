@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mkvtoolnix-service
+  namespace: jovian-prod
+spec:
+  selector:
+    app: mkvtoolnix
+  ports:
+    - port: 5800
+      targetPort: mkvtoolnix-http
+      protocol: TCP
+      name: mkvtoolnix-http

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mkvtoolnix
+  namespace: jovian-prod
+  labels:
+    app: mkvtoolnix
+    service: media
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: mkvtoolnix
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mkvtoolnix
+    spec:
+      nodeSelector:
+        connection: standard
+      containers:
+      - name: mkvtoolnix
+        image: jlesage/mkvtoolnix:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5800
+          name: mkvtoolnix-http
+          protocol: TCP
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: smb-vol
+          mountPath: /media
+        env:
+        - name: TZ
+          value: 'America/Chicago'
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: mkvtoolnix
+          readOnly: false
+      - name: smb-vol
+        persistentVolumeClaim:
+          claimName: mkvtoolnix-smb-media
+          readOnly: false
