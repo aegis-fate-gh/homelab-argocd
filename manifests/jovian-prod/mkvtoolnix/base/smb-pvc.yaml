@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mkvtoolnix-smb-media-pvc
+  name: mkvtoolnix-smb-media
   namespace: jovian-prod
 spec:
   accessModes:
@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 72Ti
-  volumeName: plex-smb-media
+  volumeName: mkvtoolnix-smb-media
