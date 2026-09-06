@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: alloy-daemonset
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      name: alloy
+  template:
+    metadata:
+      labels:
+        name: alloy
+    spec:
+      serviceAccountName: alloy-serviceaccount
+      containers:
+      - name: alloy-container
+        image: grafana/alloy:latest
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        args:
+        - run
+        - /etc/alloy/config.alloy
+        - --storage.path=/var/lib/alloy/data
+        env:
+        - name: 'HOSTNAME' # needed when using kubernetes_sd_configs / discovery.kubernetes
+          valueFrom:
+            fieldRef:
+              fieldPath: 'spec.nodeName'
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log
+        - name: alloy-config
+          mountPath: /etc/alloy
+        - mountPath: /var/log/pods
+          name: varlogpods
+          readOnly: true
+        - mountPath: /var/lib/containerd
+          name: varlibcontainerd
+          readOnly: true
+      volumes:
+      - name: logs
+        hostPath:
+          path: /var/log
+      - name: varlogpods
+        hostPath:
+          path: /var/log/pods
+      - name: varlibcontainerd
+        hostPath:
+          path: /var/lib/containerd
+      - name: alloy-config
+        configMap:
+          name: alloy-config
