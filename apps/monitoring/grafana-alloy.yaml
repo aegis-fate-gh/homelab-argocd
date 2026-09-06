@@ -6,7 +6,7 @@ metadata:
   # Delete deployed resources when the Application is deleted
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: jovian
+  project: monitoring
   source:
     path: manifests/monitoring/grafana-alloy/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
@@ -15,7 +15,7 @@ spec:
       recurse: false # Set to true to track manifests in subdirectories
       include: '{*.yaml,*.yml}' # Only process these file patterns
   destination:
-    namespace: jovian-prod
+    namespace: monitoring
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
