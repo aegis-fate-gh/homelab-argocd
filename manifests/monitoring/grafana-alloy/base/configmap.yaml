@@ -57,8 +57,9 @@ data:
     }
 
     loki.source.file "pod_logs" {
-      targets    = local.file_match.pod_logs.targets
-      forward_to = [loki.process.pod_logs.receiver]
+      targets       = local.file_match.pod_logs.targets
+      forward_to    = [loki.process.pod_logs.receiver]
+      tail_from_end = true
     }
 
     loki.process "pod_logs" {
@@ -71,4 +72,30 @@ data:
       endpoint {
         url = "http://192.168.6.195:3100/loki/api/v1/push"
       }
+    }
+
+    loki.relabel "journal" {
+      forward_to = []
+
+      rule {
+        source_labels = ["__journal__systemd_unit"]
+        target_label  = "unit"
+      }
+
+      rule {
+        source_labels = ["__journal__hostname"]
+        target_label  = "host"
+      }
+
+      rule {
+        source_labels = ["__journal_priority_keyword"]
+        target_label  = "level"
+      }
+    }
+
+    loki.source.journal "journal" {
+      path          = "/var/log/journal"
+      relabel_rules = loki.relabel.journal.rules
+      labels        = {job = "systemd-journal"}
+      forward_to    = [loki.write.default.receiver]
     }
