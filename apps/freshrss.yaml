@@ -8,7 +8,7 @@ metadata:
 spec:
   project: jovian
   source:
-    path: manifests/freshrss/base
+    path: manifests/jovian-prod/freshrss/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:

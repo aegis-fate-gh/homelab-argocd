@@ -8,7 +8,7 @@ metadata:
 spec:
   project: jovian
   source:
-    path: manifests/plex-beta/base
+    path: manifests/jovian-prod/plex-beta/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:

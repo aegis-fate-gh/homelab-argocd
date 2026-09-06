@@ -8,7 +8,7 @@ metadata:
 spec:
   project: jovian
   source:
-    path: manifests/cronjobs/base
+    path: manifests/jovian-prod/cronjobs/base
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:
