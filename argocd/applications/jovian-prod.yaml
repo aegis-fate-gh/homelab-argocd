@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    path: apps
+    path: apps/jovian-prod
     repoURL: https://github.com/aegis-fate-gh/homelab-argocd
     targetRevision: main
     directory:
