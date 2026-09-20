@@ -188,6 +188,8 @@
   },
   "active": "7d18b35e63cc2ae2",
   "lastOpenFiles": [
+    "manifests/jovian-prod/tdarr/app-diagram.py",
+    "manifests/jovian-prod/ytdl/app.png",
     "manifests/jovian-prod/ytdl/app-diagram.py",
     "manifests/jovian-prod/ytdl/ytdl-diagram.py",
     "manifests/jovian-prod/ytdl/tdarr-diagram.py",
@@ -210,7 +212,6 @@
     "manifests/jovian-prod/n8n/base/service.yaml",
     "manifests/jovian-prod/n8n/base/pvc.yaml",
     "manifests/jovian-prod/n8n/base/ingress.yaml",
-    "manifests/jovian-prod/n8n/base/deployment.yaml",
-    "manifests/jovian-prod/n8n/base"
+    "manifests/jovian-prod/n8n/base/deployment.yaml"
   ]
 }

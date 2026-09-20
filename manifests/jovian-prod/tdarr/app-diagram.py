@@ -3,7 +3,7 @@ from diagrams.custom import Custom
 from diagrams.onprem import network, storage
 from diagrams.k8s.storage import PVC
 
-with Diagram("Tdarr", show=False, direction="TB"):
+with Diagram("app", show=False, direction="TB"):
     with Cluster("Homelab"):
         unas_pro = Custom("UNAS-Pro", "/app/icons/unifi-drive.png")
         with Cluster("Eos"):

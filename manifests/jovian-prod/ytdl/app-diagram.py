@@ -19,5 +19,6 @@ with Diagram("app", show=False, direction="TB"):
 
     traefik >> Edge(color="blue", style="dotted") >> ytdl
     ceph >> Edge(color="darkorange", style="solid") >> ytdl
-    smb - Edge(color="black", style="solid") - ytdl, mongo
+    ceph >> Edge(color="darkorange", style="solid") >> mongo
+    smb - Edge(color="black", style="solid") - ytdl
     unas_pro - Edge(color="royalblue", style="solid") - smb
