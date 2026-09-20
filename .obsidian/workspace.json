@@ -188,6 +188,10 @@
   },
   "active": "7d18b35e63cc2ae2",
   "lastOpenFiles": [
+    "manifests/jovian-prod/ytdl/app-diagram.py",
+    "manifests/jovian-prod/ytdl/ytdl-diagram.py",
+    "manifests/jovian-prod/ytdl/tdarr-diagram.py",
+    "manifests/jovian-prod/ytdl/README.md",
     "manifests/jovian-prod/tdarr/tdarr.png",
     "manifests/jovian-prod/tdarr/app.png",
     "manifests/jovian-prod/tdarr/tdarr-diagram.py",
