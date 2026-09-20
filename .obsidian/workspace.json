@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "manifests/jovian-prod/tdarr/README.md",
+                "file": "manifests/jovian-prod/tautulli/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "manifests/jovian-prod/tdarr/README.md",
+                "file": "manifests/jovian-prod/tautulli/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "manifests/jovian-prod/tdarr/README.md",
+                "file": "manifests/jovian-prod/tautulli/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "manifests/jovian-prod/tdarr/README.md",
+                "file": "manifests/jovian-prod/tautulli/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,9 +190,10 @@
   },
   "active": "7d18b35e63cc2ae2",
   "lastOpenFiles": [
+    "manifests/monitoring/grafana-alloy/README.md",
+    "manifests/jovian-prod/tdarr/README.md",
     "manifests/jovian-prod/tdarr/app.png",
     "manifests/jovian-prod/tdarr/tdarr.png",
-    "manifests/monitoring/grafana-alloy/README.md",
     "manifests/jovian-prod/freshrss/app.png",
     "manifests/jovian-prod/cloudflare-tunnel/app.png",
     "manifests/jovian-prod/cloudflare-tunnel/app-diagram.py",
@@ -213,7 +214,6 @@
     "manifests/jovian-prod/README.md",
     "README.md",
     "manifests/monitoring/README.md",
-    "manifests/jovian-prod/tdarr/README.md",
     "manifests/jovian-prod/freshrss/README.md",
     "manifests/jovian-prod/n8n/base/service.yaml"
   ]

@@ -16,10 +16,14 @@ Set up on one, duplicate LXC to other nodes, change config as needed
 
 #### LXC Settings
 ###### Fstab Entry
-`//IP_HERE/media /media cifs credentials=/etc/.smbcredentials,vers=3.0,iocharset=utf8 0 0`
+```
+//IP_HERE/media /media cifs credentials=/etc/.smbcredentials,vers=3.0,iocharset=utf8 0 0
+```
 
 ###### Service Entry
-`nano /etc/systemd/system/tdarr.service`
+```
+nano /etc/systemd/system/tdarr.service
+```
 
 ###### tdarr.service file
 ```
