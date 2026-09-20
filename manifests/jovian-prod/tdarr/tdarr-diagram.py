@@ -19,7 +19,7 @@ with Diagram("Tdarr", show=False, direction="TB"):
 
     traefik >> Edge(color="blue", style="dotted") >> tdarr
     ceph >> Edge(color="darkorange", style="solid") >> tdarr
-    smb >> Edge(color="black", style="solid") >> tdarr
+    smb - Edge(color="black", style="solid") - tdarr
     tdarr_lxc >> Edge(color="royalblue", style="solid") >> loadbalancer >> Edge(color="royalblue", style="solid") >> tdarr
-    unas_pro >> Edge(color="royalblue", style="solid") >> tdarr_lxc
-    unas_pro >> Edge(color="royalblue", style="solid") >> smb
+    unas_pro - Edge(color="royalblue", style="solid") - tdarr_lxc
+    unas_pro - Edge(color="royalblue", style="solid") - smb
