@@ -22,21 +22,25 @@ Set up on one, duplicate LXC to other nodes, change config as needed
 `nano /etc/systemd/system/tdarr.service`
 
 ###### tdarr.service file
-`[Unit]`
-`Description=TDarr_Node`
-`After=network.target`
+```
+[Unit]
+Description=TDarr_Node
+After=network.target
 
-`[Service]`
-`Type=simple`
-`ExecStart=/root/Tdarr_Node/Tdarr_Node/Tdarr_Node`
-`User=root`
-`Restart=always`
+[Service]
+Type=simple
+ExecStart=/root/Tdarr_Node/Tdarr_Node/Tdarr_Node
+User=root
+Restart=always
 
-`[Install]`
-`WantedBy=multi-user.target`
+[Install]
+WantedBy=multi-user.target
+```
 
 ###### Service Start
-`systemctl daemon-reload && systemctl enable tdarr.service && systemctl start tdarr.service`
+```
+systemctl daemon-reload && systemctl enable tdarr.service && systemctl start tdarr.service
+```
 
 #### Source
 https://github.com/haveagitgat/tdarr
