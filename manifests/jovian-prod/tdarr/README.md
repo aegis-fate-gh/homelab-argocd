@@ -48,9 +48,9 @@ systemctl daemon-reload && systemctl enable tdarr.service && systemctl start tda
 
 #### Flows
 I make use of 3 flows
-1. [AV1 Import]([manifests/jovian-prod/tdarr/flows/AV1%20Import.md](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Import.md)) - The primary flow, this handles all downloaded media files, converting them to AV1 as needed. It then moves it to the needed directories for Sonarr and Radarr to pick them up, move them to their final destination, and notify Plex / Jellyfin to trigger library updates
-2. [AV1 Replacer Radarr]([manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Radarr.md](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Radarr.md)) - Goes through the already existing movie files and looks for files to convert. It replaces them only if the converted file is smaller than the starting file.
-3. [AV1 Replacer Sonarr]([manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Sonarr.md](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Sonarr.md)) - Same process as the Radarr replacer, but for Sonarr sourced TV shows.
+1. [AV1 Import](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Import.md) - The primary flow, this handles all downloaded media files, converting them to AV1 as needed. It then moves it to the needed directories for Sonarr and Radarr to pick them up, move them to their final destination, and notify Plex / Jellyfin to trigger library updates
+2. [AV1 Replacer Radarr](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Radarr.md) - Goes through the already existing movie files and looks for files to convert. It replaces them only if the converted file is smaller than the starting file.
+3. [AV1 Replacer Sonarr](https://github.com/aegis-fate-gh/homelab-argocd/blob/main/manifests/jovian-prod/tdarr/flows/AV1%20Replacer%20Sonarr.md) - Same process as the Radarr replacer, but for Sonarr sourced TV shows.
 
 #### Source
 https://github.com/haveagitgat/tdarr
