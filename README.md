@@ -1,4 +1,4 @@
 # homelab-argocd
 This contains configs and files for the argocd managed portion of my homelab.
 
-It works via an app of apps model. With the big apps being in the applications folder, and the apps they manage being located in apps. Manifests is as the name implies, where the manifests are stored. They're split based on what app manages them, along with a templates folder.
+It works via an app of apps model. With the big apps being in the [applications](https://github.com/aegis-fate-gh/homelab-argocd/tree/main/argocd/applications) folder, and the apps they manage being located in [apps](https://github.com/aegis-fate-gh/homelab-argocd/tree/main/apps). [Manifests](https://github.com/aegis-fate-gh/homelab-argocd/tree/main/manifests) is as the name implies, where the manifests are stored. They're split based on what app manages them, along with a [templates](https://github.com/aegis-fate-gh/homelab-argocd/tree/main/manifests/template/base) folder.
