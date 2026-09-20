@@ -10,8 +10,7 @@ Tdarr is set up in two separate layers, the server portion which is managed here
 
 Shared Media storage is handled via the same UNAS-Pro servers that Plex and other media apps pull from.
 #### Diagram
-
-
+![Tdarr](app.png)
 #### LXC Config / Setup process
 Set up on one, duplicate LXC to other nodes, change config as needed
 

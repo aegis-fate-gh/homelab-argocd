@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "manifests/monitoring/grafana-alloy/README.md",
+                "file": "manifests/jovian-prod/tdarr/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "manifests/monitoring/grafana-alloy/README.md",
+                "file": "manifests/jovian-prod/tdarr/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "manifests/monitoring/grafana-alloy/README.md",
+                "file": "manifests/jovian-prod/tdarr/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "manifests/monitoring/grafana-alloy/README.md",
+                "file": "manifests/jovian-prod/tdarr/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,21 +190,23 @@
   },
   "active": "7d18b35e63cc2ae2",
   "lastOpenFiles": [
+    "manifests/jovian-prod/tdarr/app.png",
+    "manifests/jovian-prod/tdarr/tdarr.png",
+    "manifests/monitoring/grafana-alloy/README.md",
+    "manifests/jovian-prod/freshrss/app.png",
+    "manifests/jovian-prod/cloudflare-tunnel/app.png",
     "manifests/jovian-prod/cloudflare-tunnel/app-diagram.py",
     "manifests/jovian-prod/freshrss/app-diagram.py",
     "manifests/jovian-prod/freshrss/freshrss.png",
-    "manifests/jovian-prod/tdarr/app.png",
     "manifests/jovian-prod/tdarr/app-diagram.py",
     "manifests/jovian-prod/ytdl/app.png",
     "manifests/jovian-prod/ytdl/app-diagram.py",
     "manifests/jovian-prod/ytdl/ytdl-diagram.py",
     "manifests/jovian-prod/ytdl/tdarr-diagram.py",
     "manifests/jovian-prod/ytdl/README.md",
-    "manifests/jovian-prod/tdarr/tdarr.png",
     "manifests/jovian-prod/tdarr/tdarr-diagram.py",
     "manifests/jovian-prod/tdarr/diagram.py",
     "manifests/template/diagram.py",
-    "manifests/monitoring/grafana-alloy/README.md",
     "manifests/jovian-prod/tautulli/README.md",
     "manifests/jovian-prod/tracearr/README.md",
     "manifests/template/README.md",
@@ -213,7 +215,6 @@
     "manifests/monitoring/README.md",
     "manifests/jovian-prod/tdarr/README.md",
     "manifests/jovian-prod/freshrss/README.md",
-    "manifests/jovian-prod/n8n/base/service.yaml",
-    "manifests/jovian-prod/n8n/base/pvc.yaml"
+    "manifests/jovian-prod/n8n/base/service.yaml"
   ]
 }
