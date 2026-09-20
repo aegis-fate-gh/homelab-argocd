@@ -14,5 +14,5 @@ with Diagram("FreshRSS", show=False, direction="TB"):
 
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> freshrss
     traefik >> Edge(color="blue", style="dotted") >> freshrss
-    ceph >> Edge(color="black", style="solid") >> freshrss
+    ceph >> Edge(color="darkorange", style="solid") >> freshrss
     backup << Edge(color="black", style="solid") << freshrss
