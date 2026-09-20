@@ -1,0 +1,1 @@
+This folders contains apps that end up in the monitoring namespace
