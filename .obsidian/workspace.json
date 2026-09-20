@@ -11,12 +11,14 @@
             "id": "7d18b35e63cc2ae2",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "manifests/jovian-prod/freshrss/freshrss.png"
+                "file": "manifests/monitoring/grafana-alloy/README.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "freshrss"
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
         ]
@@ -97,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "manifests/jovian-prod/freshrss/freshrss.png",
+                "file": "manifests/monitoring/grafana-alloy/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "manifests/jovian-prod/freshrss/freshrss.png",
+                "file": "manifests/monitoring/grafana-alloy/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -159,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "manifests/jovian-prod/freshrss/freshrss.png",
+                "file": "manifests/monitoring/grafana-alloy/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -188,6 +190,10 @@
   },
   "active": "7d18b35e63cc2ae2",
   "lastOpenFiles": [
+    "manifests/jovian-prod/cloudflare-tunnel/app-diagram.py",
+    "manifests/jovian-prod/freshrss/app-diagram.py",
+    "manifests/jovian-prod/freshrss/freshrss.png",
+    "manifests/jovian-prod/tdarr/app.png",
     "manifests/jovian-prod/tdarr/app-diagram.py",
     "manifests/jovian-prod/ytdl/app.png",
     "manifests/jovian-prod/ytdl/app-diagram.py",
@@ -195,7 +201,6 @@
     "manifests/jovian-prod/ytdl/tdarr-diagram.py",
     "manifests/jovian-prod/ytdl/README.md",
     "manifests/jovian-prod/tdarr/tdarr.png",
-    "manifests/jovian-prod/tdarr/app.png",
     "manifests/jovian-prod/tdarr/tdarr-diagram.py",
     "manifests/jovian-prod/tdarr/diagram.py",
     "manifests/template/diagram.py",
@@ -208,10 +213,7 @@
     "manifests/monitoring/README.md",
     "manifests/jovian-prod/tdarr/README.md",
     "manifests/jovian-prod/freshrss/README.md",
-    "manifests/jovian-prod/freshrss/freshrss.png",
     "manifests/jovian-prod/n8n/base/service.yaml",
-    "manifests/jovian-prod/n8n/base/pvc.yaml",
-    "manifests/jovian-prod/n8n/base/ingress.yaml",
-    "manifests/jovian-prod/n8n/base/deployment.yaml"
+    "manifests/jovian-prod/n8n/base/pvc.yaml"
   ]
 }

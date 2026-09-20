@@ -1,7 +1,7 @@
 from diagrams import Diagram, Cluster, Edge
 from diagrams.custom import Custom
 
-with Diagram("Cloudflare Tunnel", show=False, direction="TB"):
+with Diagram("app", show=False, direction="TB"):
     with Cluster("Cloudflare"):
         cloudflare = Custom("Cloudflare", "/app/icons/cloudflare.png")
     with Cluster("k3s"):
