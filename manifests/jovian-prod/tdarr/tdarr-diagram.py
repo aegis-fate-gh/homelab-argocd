@@ -1,7 +1,7 @@
 from diagrams import Diagram, Cluster, Edge
 from diagrams.custom import Custom
 from diagrams.onprem import network, storage
-from diagrams.k8s.storage import pvc
+from diagrams.k8s.storage import PVC
 
 with Diagram("Tdarr", show=False, direction="TB"):
     with Cluster("Homelab"):
@@ -12,7 +12,7 @@ with Diagram("Tdarr", show=False, direction="TB"):
                 with Cluster("Namespace: jovian-prod"):
                     tdarr = Custom("Tdarr Server", "/app/icons/tdarr.png")
                     ceph = storage.Ceph("CephFS PVC")
-                    smb = pvc("Media SMB PVC")
+                    smb = PVC("Media SMB PVC")
                     loadbalancer = Custom("MetalLB IP", "/app/icons/metallb.png")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
