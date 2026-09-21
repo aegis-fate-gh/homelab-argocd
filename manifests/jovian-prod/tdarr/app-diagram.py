@@ -14,6 +14,8 @@ with Diagram("app", show=False, direction="TB"):
                     ceph = storage.Ceph("CephFS PVC")
                     smb = PVC("Media SMB PVC")
                     loadbalancer = Custom("MetalLB IP", "/app/icons/metallb.png")
+                    radarr = Custom("Radarr", "/app/icons/radarr.png")
+                    sonarr = Custom("Sonarr", "/app/icons/sonarr.png")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 
@@ -23,3 +25,6 @@ with Diagram("app", show=False, direction="TB"):
     tdarr_lxc >> Edge(color="royalblue", style="solid") >> loadbalancer >> Edge(color="royalblue", style="solid") >> tdarr
     unas_pro - Edge(color="royalblue", style="solid") - tdarr_lxc
     unas_pro - Edge(color="royalblue", style="solid") - smb
+
+    tdarr >> Edge(color="royalblue", style="solid") >> sonarr
+    tdarr >> Edge(color="royalblue", style="solid") >> radarr
