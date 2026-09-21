@@ -37,48 +37,48 @@ with Diagram("APP", show=False, direction="TB"):
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 
-traefik >> Edge(color="blue", style="dotted") >> sonarr
-traefik >> Edge(color="blue", style="dotted") >> radarr
-traefik >> Edge(color="blue", style="dotted") >> bazarr
-traefik >> Edge(color="blue", style="dotted") >> prowlarr
-traefik >> Edge(color="blue", style="dotted") >> cleanuparr
+    traefik >> Edge(color="blue", style="dotted") >> sonarr
+    traefik >> Edge(color="blue", style="dotted") >> radarr
+    traefik >> Edge(color="blue", style="dotted") >> bazarr
+    traefik >> Edge(color="blue", style="dotted") >> prowlarr
+    traefik >> Edge(color="blue", style="dotted") >> cleanuparr
 
-bazarr_pvc >> Edge(color="darkorange", style="solid") >> bazarr
-prowlarr_pvc >> Edge(color="darkorange", style="solid") >> prowlarr
-radarr_pvc >> Edge(color="darkorange", style="solid") >> radarr
-sonarr_pvc >> Edge(color="darkorange", style="solid") >> sonarr
-cleanuparr_pvc >> Edge(color="darkorange", style="solid") >> cleanuparr
+    bazarr_pvc >> Edge(color="darkorange", style="solid") >> bazarr
+    prowlarr_pvc >> Edge(color="darkorange", style="solid") >> prowlarr
+    radarr_pvc >> Edge(color="darkorange", style="solid") >> radarr
+    sonarr_pvc >> Edge(color="darkorange", style="solid") >> sonarr
+    cleanuparr_pvc >> Edge(color="darkorange", style="solid") >> cleanuparr
 
-smb - Edge(color="black", style="solid") - bazarr
-smb - Edge(color="black", style="solid") - radarr
-smb - Edge(color="black", style="solid") - sonarr
+    smb - Edge(color="black", style="solid") - bazarr
+    smb - Edge(color="black", style="solid") - radarr
+    smb - Edge(color="black", style="solid") - sonarr
 
-unas_pro - Edge(color="royalblue", style="solid") - smb
+    unas_pro - Edge(color="royalblue", style="solid") - smb
 
-seerr >> Edge(color="magenta1", style="bold", minlen="3") >> sonarr
-seerr >> Edge(color="magenta1", style="bold", minlen="3") >> radarr
+    seerr >> Edge(color="magenta1", style="bold", minlen="3") >> sonarr
+    seerr >> Edge(color="magenta1", style="bold", minlen="3") >> radarr
 
-cleanuparr >> Edge(color="darkviolet", style="bold") >> sonarr
-cleanuparr >> Edge(color="darkviolet", style="bold") >> radarr
-cleanuparr >> Edge(color="darkviolet", style="bold") >> arch_qbittorrent
+    cleanuparr >> Edge(color="darkviolet", style="bold") >> sonarr
+    cleanuparr >> Edge(color="darkviolet", style="bold") >> radarr
+    cleanuparr >> Edge(color="darkviolet", style="bold") >> arch_qbittorrent
 
-bazarr >> Edge(color="black", style="bold") >> sonarr
-bazarr >> Edge(color="black", style="bold") >> radarr
+    bazarr >> Edge(color="black", style="bold") >> sonarr
+    bazarr >> Edge(color="black", style="bold") >> radarr
 
-prowlarr >> arch_qbittorrent
-prowlarr >> flaresolverr
+    prowlarr >> arch_qbittorrent
+    prowlarr >> flaresolverr
 
-sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> arch_qbittorrent
-sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> plex
-sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> plex_beta
-sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> jellyfin
-sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> prowlarr
+    sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> arch_qbittorrent
+    sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> plex
+    sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> plex_beta
+    sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> jellyfin
+    sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> prowlarr
 
-radarr >> Edge(color="orange1", style="bold", minlen="2") >> arch_qbittorrent
-radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex
-radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex_beta
-radarr >> Edge(color="orange1", style="bold", minlen="2") >> jellyfin
-radarr >> Edge(color="orange1", style="bold", minlen="2") >> prowlarr
+    radarr >> Edge(color="orange1", style="bold", minlen="2") >> arch_qbittorrent
+    radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex
+    radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex_beta
+    radarr >> Edge(color="orange1", style="bold", minlen="2") >> jellyfin
+    radarr >> Edge(color="orange1", style="bold", minlen="2") >> prowlarr
 
-tdarr >> Edge(color="royalblue", style="solid") >> sonarr
-tdarr >> Edge(color="royalblue", style="solid") >> radarr
+    tdarr >> Edge(color="royalblue", style="solid") >> sonarr
+    tdarr >> Edge(color="royalblue", style="solid") >> radarr
