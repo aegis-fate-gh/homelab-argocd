@@ -1,20 +1,51 @@
 #### Use Case
 Tdarr started out as a solution to a few problems. 
 
-1. Plex was having issues properly importing media files. While I created a dashboard to track it, the problem was too frequent to support spot fixes
-2. Storage is expensive in 2026
-3. Using handbrake with automatic conversion doesn't scale
+1. Plex was having issues properly importing media files. While I created a dashboard in Grafana to track those issues via logs, the problem was too frequent to support spot fixes
+2. Storage is expensive in 2026, as in 2x+ more expensive than when I built the Silo pair
+3. Using handbrake with automatic conversion doesn't scale in an automated way
 
 #### Architecture
-Tdarr is set up in two separate layers, the server portion which is managed here via ArgoCD, and the individual LXC containers running the workers that live on the nodes and are managed with Proxmox.
+Tdarr is set up in two separate layers, the server portion which is managed here via ArgoCD, and the individual LXC containers running the workers that live on the nodes and are managed with Proxmox. The latter does not have GPU access in the current iteration of my homelab.
+
+Due to handbrakes memory usage causing it to be OOM killed both in K8s and on a docker host, I didn't want the Tdarr workers running within Kubernetes. More importantly, while the GPU access could be helpful, and the memory can be gated, LXC's were usable on all 5 nodes. The Jovian cluster is only on 3.
 
 Shared Media storage is handled via the same UNAS-Pro servers that Plex and other media apps pull from.
 #### Diagram
 ![Tdarr](app.png)
 #### LXC Config / Setup process
 Set up on one, duplicate LXC to other nodes, change config as needed
+Install process: https://docs.tdarr.io/docs/installation/windows-linux-macos/
 
-#### LXC Settings
+###### Tdarr Node Config
+/root/Tdarr_Node/configs/Tdarr_Node_Config.json
+```
+{
+  "nodeName": "EDIT_ME",
+  "serverURL": "http://192.168.6.230:8266",
+  "serverIP": "192.168.6.230",
+  "serverPort": "8266",
+  "handbrakePath": "",
+  "ffmpegPath": "",
+  "mkvpropeditPath": "",
+  "pathTranslators": [
+    {
+      "server": "/media",
+      "node": "/media"
+    }
+  ],
+  "nodeType": "mapped",
+  "unmappedNodeCache": "/root/Tdarr_Node/unmappedNodeCache",
+  "logLevel": "INFO",
+  "priority": -1,
+  "cronPluginUpdate": "",
+  "apiKey": "",
+  "maxLogSizeMB": 10,
+  "pollInterval": 2000,
+  "startPaused": false
+}
+```
+
 ###### Fstab Entry
 ```
 //IP_HERE/media /media cifs credentials=/etc/.smbcredentials,vers=3.0,iocharset=utf8 0 0
