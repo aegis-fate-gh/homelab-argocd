@@ -24,15 +24,15 @@ with Diagram("APP", show=False, direction="TB"):
                         jellyfin = Custom("Jellyfin", "/app/icons/jellyfin.png")
                     with Cluster("Pod: Arch-qbittorrent"):
                         arch_qbittorrent = Custom("Arch-Qbitorrent", "/app/icons/qbittorrent.png")
-                    with Cluster("Pod: Seerr"):
+                    with Cluster("Pod: Overseerr"):
                         seerr = Custom("Seerr", "/app/icons/overseerr.png")
                     with Cluster("Pod: Tdarr"):
                         tdarr = Custom("Tdarr", "/app/icons/tdarr.png")
-                    bazarr_pvc = storage.Ceph("PVC")
-                    prowlarr_pvc = storage.Ceph("PVC")
-                    radarr_pvc = storage.Ceph("PVC")
-                    sonarr_pvc = storage.Ceph("PVC")
-                    cleanuparr_pvc = storage.Ceph("PVC")
+                    bazarr_pvc = storage.Ceph("Bazarr PVC")
+                    prowlarr_pvc = storage.Ceph("Prowlarr PVC")
+                    radarr_pvc = storage.Ceph("Radarr PVC")
+                    sonarr_pvc = storage.Ceph("Sonarr PVC")
+                    cleanuparr_pvc = storage.Ceph("Cleanuparr PVC")
                     smb = PVC("Media SMB PVC")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
@@ -50,8 +50,8 @@ with Diagram("APP", show=False, direction="TB"):
     cleanuparr_pvc >> Edge(color="darkorange", style="solid") >> cleanuparr
 
     smb - Edge(color="black", style="solid") - bazarr
-    smb - Edge(color="black", style="solid") - radarr
-    smb - Edge(color="black", style="solid") - sonarr
+    smb - Edge(color="orange1", style="solid") - radarr
+    smb - Edge(color="turquoise1", style="solid") - sonarr
 
     unas_pro - Edge(color="royalblue", style="solid") - smb
 
