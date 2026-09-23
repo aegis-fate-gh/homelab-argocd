@@ -22,9 +22,8 @@ with Diagram("app", show=False, direction="TB"):
                     syn_smb = PVC("Synology SMB PVC")
                     kometa_pvc = Ceph("Bazarr PVC")
 
-github - diagrams_runner
-unas_pro - Edge(color="black", style="solid") - smb - Edge(color="black", style="solid") - pruner
-synology << Edge(color="black", style="solid") << syn_smb << Edge(color="black", style="solid") << metadata
-kometa >> Edge(color="orange", style="bold", minlen="2") >> plex
-kometa_pvc >> Edge(color="darkorange", style="solid") >> kometa
-
+    github - diagrams_runner
+    unas_pro - Edge(color="black", style="solid") - smb - Edge(color="black", style="solid") - pruner
+    synology << Edge(color="black", style="solid") << syn_smb << Edge(color="black", style="solid") << metadata
+    kometa >> Edge(color="orange", style="bold", minlen="2") >> plex
+    kometa_pvc >> Edge(color="darkorange", style="solid") >> kometa
