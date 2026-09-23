@@ -22,3 +22,4 @@ with Diagram("app", show=False, direction="TB"):
     ceph >> Edge(color="darkorange", style="solid") >> mongo
     smb - Edge(color="black", style="solid") - ytdl
     unas_pro - Edge(color="royalblue", style="solid") - smb
+    ytdl - mongo

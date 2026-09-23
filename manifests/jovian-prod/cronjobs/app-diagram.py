@@ -9,19 +9,19 @@ with Diagram("app", show=False, direction="TB"):
         github = Custom("Github", "/app/icons/github.png")
     with Cluster("Homelab"):
         unas_pro = Custom("UNAS-Pro", "/app/icons/unifi-drive.png")
-        synology = Custom("UNAS-Pro", "/app/icons/synology.png")
+        synology = Custom("Syn-Coruscant", "/app/icons/synology.png")
         with Cluster("Eos"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Jobs"):
                         diagrams_runner = Cronjob("diagrams-repo-runner")
                         metadata = Cronjob("media-metadata-manager")
-                        pruner = Custom("media-metadata.manager", "/app/icons/busybox.png")
+                        pruner = Custom("media-pruner", "/app/icons/busybox.png")
                         kometa = Custom("Kometa", "/app/icons/kometa.png")
                     plex = Custom("Plex", "/app/icons/plex.png")
                     smb = PVC("Media SMB PVC")
                     syn_smb = PVC("Synology SMB PVC")
-                    kometa_pvc = Ceph("Bazarr PVC")
+                    kometa_pvc = Ceph("Kometa PVC")
 
     github - diagrams_runner
     unas_pro - Edge(color="black", style="solid") - smb - Edge(color="black", style="solid") - pruner
