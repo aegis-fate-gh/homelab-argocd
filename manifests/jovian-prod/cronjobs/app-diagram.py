@@ -1,7 +1,8 @@
 from diagrams import Diagram, Cluster, Edge
 from diagrams.custom import Custom
+from diagrams.onprem.storage import Ceph
 from diagrams.k8s.compute import Cronjob
-from diagrams.k8s.storage import PVC, Ceph
+from diagrams.k8s.storage import PVC
 
 with Diagram("app", show=False, direction="TB"):
     with Cluster("Github"):
