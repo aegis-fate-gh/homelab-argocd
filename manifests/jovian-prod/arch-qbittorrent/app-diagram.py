@@ -12,8 +12,8 @@ with Diagram("APP", show=False, direction="TB"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Pod: Arch-qBittorrent"):
-                        busybox = Custom("Prowlarr", "/app/icons/busybox.png")
-                        arch = Custom("Prowlarr", "/app/icons/qbittorrent.png")
+                        busybox = Custom("Busybox", "/app/icons/busybox.png")
+                        arch = Custom("Arch-qBittorrent", "/app/icons/qbittorrent.png")
                     with Cluster("Pod: Arrstack"):
                         prowlarr = Custom("Prowlarr", "/app/icons/prowlarr.png")
                         radarr = Custom("Radarr", "/app/icons/radarr.png")
