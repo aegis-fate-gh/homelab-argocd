@@ -135,7 +135,7 @@ spec:
 
       - name: flaresolverr
         image: ghcr.io/flaresolverr/flaresolverr:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8191
           name: flare-tcp

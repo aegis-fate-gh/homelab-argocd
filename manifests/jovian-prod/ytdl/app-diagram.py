@@ -11,7 +11,7 @@ with Diagram("app", show=False, direction="TB"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     ytdl = Custom("YouTube DL Material", "/app/icons/youtube-dl.png")
-                    ceph = storage.Ceph("CephFS PVC")
+                    ceph = storage.Ceph("Ytdl PVC")
                     smb = PVC("Media SMB PVC")
                     mongo = Mongodb("YTDL Mongo")
                 with Cluster("Namespace: kube-system"):
