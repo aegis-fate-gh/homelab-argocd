@@ -4,6 +4,9 @@ from diagrams.onprem import storage, logging
 from diagrams.k8s.storage import PVC
 
 with Diagram("app", show=False, direction="TB"):
+    with Cluster("Parents House"):
+        with Cluster("Synology RS1221+"):
+            synology = Custom("Off-Site Backups", "/app/icons/synology.png")
     with Cluster("Homelab"):
         with Cluster("Router"):
             router = Custom("UDM-PRO SE", "/app/icons/ubiquiti-unifi.png")
@@ -36,9 +39,11 @@ with Diagram("app", show=False, direction="TB"):
     plex >> Edge(color="orangered", style="bold") >> alloy >> Edge(color="orangered", style="bold") >> loki
     plex << Edge(color="orangered", style="bold") << smb >> Edge(color="orangered", style="bold") << unas_pro
 
+    unas_pro >> synology
+
     sonarr >> Edge(color="turquoise1", style="bold", minlen="2") >> plex
     radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex
 
     plex >> Edge(color="orangered", style="bold") >> tracearr
 
-    router >> plex
+    router >> metallb >> plex
