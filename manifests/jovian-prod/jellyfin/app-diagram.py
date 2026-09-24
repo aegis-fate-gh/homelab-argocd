@@ -26,9 +26,9 @@ with Diagram("app", show=False, direction="TB"):
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 
-                    ceph = storage.Ceph("Jellyfin PVC")
-                    backup = Custom("Backups", "/app/icons/restic.png")
-                    smb = PVC("Media SMB PVC")
+                ceph = storage.Ceph("Jellyfin PVC")
+                backup = Custom("Backups", "/app/icons/restic.png")
+                smb = PVC("Media SMB PVC")
 
                 metallb = Custom("MetalLB IP", "/app/icons/metallb.png")
 
