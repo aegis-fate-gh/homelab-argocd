@@ -35,7 +35,7 @@ with Diagram("app", show=False, direction="TB"):
     ceph >> Edge(color="darkorange", style="solid") >> jellyfin
 
     metallb >> jellyfin
-    traefik >> Edge(color="blue", style="dotted") >> traefik
+    traefik >> Edge(color="blue", style="dotted") >> jellyfin
 
     backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << jellyfin
     jellyfin << Edge(color="orangered", style="bold") << smb >> Edge(color="orangered", style="bold") << unas_pro
