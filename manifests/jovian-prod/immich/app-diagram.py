@@ -6,7 +6,7 @@ from diagrams.k8s.storage import PVC
 with Diagram("app", show=False, direction="TB"):
     with Cluster("Parents House"):
         with Cluster("Synology RS1221+"):
-            synology = Custom("Off-Site Backups", "/app/icons/synology.png")
+            syn_sanctuary = Custom("Off-Site Backups", "/app/icons/synology.png")
     with Cluster("Backblaze"):
         backblaze = Custom("Backups", "/app/icons/backblaze.png")
     with Cluster("Dropbox"):
@@ -48,4 +48,4 @@ with Diagram("app", show=False, direction="TB"):
     immich - redis
     immich - db
 
-    unas_pro >> synology
+    unas_pro >> syn_sanctuary
