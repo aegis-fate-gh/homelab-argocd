@@ -12,7 +12,7 @@ with Diagram("app", show=False, direction="TB"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Pod: Vaultwarden"):
                         vaultwarden = Custom("Vaultwarden", "/app/icons/vaultwarden-light.png")
-                    ceph = storage.Ceph("CephFS PVC")
+                    ceph = storage.Ceph("Vaultwarden PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")

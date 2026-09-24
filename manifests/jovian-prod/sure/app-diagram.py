@@ -12,8 +12,8 @@ with Diagram("app", show=False, direction="TB"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Pod: Sure"):
-                        sure = Custom("Sure", "/app/icons/youtube-dl.png")
-                        worker = Custom("Worker", "/app/icons/sure-finance.png")
+                        sure = Custom("Web", "/app/icons/sure-finance.png")
+                        worker = Custom("orker", "/app/icons/sure-finance.png")
                         postgres = database.Postgresql("Postgres")
                         redis = inmemory.Redis("Redis")
 

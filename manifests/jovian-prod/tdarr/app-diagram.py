@@ -7,7 +7,8 @@ with Diagram("app", show=False, direction="TB"):
     with Cluster("Homelab"):
         unas_pro = Custom("UNAS-Pro", "/app/icons/unifi-drive.png")
         with Cluster("Eos"):
-            tdarr_lxc = Custom("Tdarr Workers", "/app/icons/tdarr.png")
+            with Cluster("LXC"):
+                tdarr_lxc = Custom("Tdarr Workers", "/app/icons/tdarr.png")
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Pod: Tdarr"):

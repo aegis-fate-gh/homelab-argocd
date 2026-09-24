@@ -6,12 +6,12 @@ with Diagram("app", show=False, direction="TB"):
     with Cluster("Backblaze"):
         backblaze = Custom("Backups", "/app/icons/backblaze.png")
     with Cluster("Router"):
-        router = Custom("UDM-PRO SE", "/app/icons/ubituiti-unifi.png")
+        router = Custom("UDM-PRO SE", "/app/icons/ubiquiti-unifi.png")
     with Cluster("Homelab"):
         with Cluster("Homelab"):
             unas_pro = Custom("UNAS-Pro", "/app/icons/unifi-drive.png")
         with Cluster("Eos"):
-            with Cluster("Wings-01/02"):
+            with Cluster("VM: Wings-01/02"):
                 with Cluster("Docker"):
                     wings = Custom("Pterodactyl Wings", "/app/icons/pterodactyl.png")
             with Cluster("k3s"):
@@ -34,6 +34,9 @@ with Diagram("app", show=False, direction="TB"):
     ceph >> Edge(color="darkorange", style="solid") >> pterodactyl
 
     backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << pterodactyl
+    backblaze << Edge(color="black", style="solid") << unas_pro
+
+    cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> pterodactyl
 
     pterodactyl >> wings
     pterodactyl >> mariadb
