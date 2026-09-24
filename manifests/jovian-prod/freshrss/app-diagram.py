@@ -9,8 +9,10 @@ with Diagram("app", show=False, direction="TB"):
         with Cluster("Eos"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
-                    cloudflare_tunnel = Custom("Cloudflare Tunnel", "/app/icons/cf-tunnel.png")
-                    freshrss = Custom("FreshRSS", "/app/icons/freshrss.png")
+                    with Cluster("Deployment: Cloudflare-tunnel"):
+                        cloudflare_tunnel = Custom("Cloudflare Tunnel", "/app/icons/cf-tunnel.png")
+                    with Cluster("Pod: FreshRSS"):
+                        freshrss = Custom("FreshRSS", "/app/icons/freshrss.png")
                     ceph = storage.Ceph("PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
                 with Cluster("Namespace: kube-system"):

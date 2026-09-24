@@ -23,6 +23,8 @@ with Diagram("APP", show=False, direction="TB"):
                         plex_beta = Custom("Plex", "/app/icons/plex.png")
                     with Cluster("Pod: Jellyfin"):
                         jellyfin = Custom("Jellyfin", "/app/icons/jellyfin.png")
+                    with Cluster("Pod: Tautulli"):
+                        tautulli = Custom("Tautulli", "/app/icons/tautulli.png")
                     tracearr_pvc = storage.Ceph("Tracearr PVC")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
@@ -35,4 +37,5 @@ with Diagram("APP", show=False, direction="TB"):
     tracearr << jellyfin
     tracearr << zen
     tracearr << andromeda
+    tracearr << tautulli
                 
