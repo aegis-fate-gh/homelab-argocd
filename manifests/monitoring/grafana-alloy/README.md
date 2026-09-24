@@ -6,6 +6,6 @@ After the logs are captured, they are then shipped off to Loki, which runs via a
 #### Architecture
 
 #### Diagram
-
+![APP](app.png)
 #### Source
 https://github.com/grafana/alloy
