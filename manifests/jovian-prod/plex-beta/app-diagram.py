@@ -40,3 +40,5 @@ with Diagram("app", show=False, direction="TB"):
     radarr >> Edge(color="orange1", style="bold", minlen="2") >> plex
 
     plex >> Edge(color="orangered", style="bold") >> tracearr
+
+    router >> plex

@@ -37,4 +37,4 @@ with Diagram("app", show=False, direction="TB"):
     seerr >> Edge(color="magenta1", style="bold", minlen="3") >> radarr
     seerr >> Edge(color="magenta1", style="bold", minlen="3") >> discord
     seerr << Edge(color="magenta1", style="bold", minlen="3") << plex
-    seerr << Edge(color="black", style="solid") << smb
+    seerr << Edge(color="black", style="solid") << smb << Edge(color="black", style="solid") << unas_pro

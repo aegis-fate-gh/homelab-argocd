@@ -53,3 +53,5 @@ with Diagram("app", show=False, direction="TB"):
     plex >> Edge(color="orangered", style="bold") >> tracearr
     plex >> Edge(color="orangered", style="bold") >> seerr
     plex << Edge(color="orangered", style="bold") << kometa
+
+    router >> plex

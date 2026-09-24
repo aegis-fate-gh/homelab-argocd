@@ -15,5 +15,5 @@ with Diagram("app", show=False, direction="TB"):
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 
-    traefik >> Edge(color="blue", style="dotted") >> tools
+    traefik >> Edge(color="blue", style="dotted") >> littlelink
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> littlelink

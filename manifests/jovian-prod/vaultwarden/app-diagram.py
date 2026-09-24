@@ -11,7 +11,7 @@ with Diagram("app", show=False, direction="TB"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Pod: Vaultwarden"):
-                        vaultwarden = Custom("Vaultwarden", "/app/icons/vaultwarden-light.png")
+                        vaultwarden = Custom("Vaultwarden", "/app/icons/vaultwarden.png")
                     ceph = storage.Ceph("Vaultwarden PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
                 with Cluster("Namespace: kube-system"):
