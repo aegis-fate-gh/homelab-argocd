@@ -29,8 +29,8 @@ with Diagram("app", show=False, direction="TB"):
 
                     ceph = storage.Ceph("Immich PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
-                    smb_silo = PVC("Immich SMB Storage PVC")
-                    smb_syn = PVC("Immich SMB Import PVC")
+                    smb_silo = PVC("SMB Storage PVC")
+                    smb_syn = PVC("SMB Import PVC")
 
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
@@ -49,3 +49,5 @@ with Diagram("app", show=False, direction="TB"):
     immich - db
 
     unas_pro >> syn_sanctuary
+
+    syn_sanctuary >> dropbox
