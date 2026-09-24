@@ -20,6 +20,7 @@ with Diagram("app", show=False, direction="TB"):
                     with Cluster("Pod: Tracearr"):
                         tracearr = Custom("Tracearr", "/app/icons/tracearr.png")
                     ceph = storage.Ceph("Tautulli PVC")
+                    backup = Custom("Backups", "/app/icons/restic.png")
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 

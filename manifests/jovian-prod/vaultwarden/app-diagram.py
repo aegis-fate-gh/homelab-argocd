@@ -10,7 +10,8 @@ with Diagram("app", show=False, direction="TB"):
         with Cluster("Eos"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
-                    vaultwarden = Custom("Vaultwarden", "/app/icons/vaultwarden-light.png")
+                    with Cluster("Pod: Vaultwarden"):
+                        vaultwarden = Custom("Vaultwarden", "/app/icons/vaultwarden-light.png")
                     ceph = storage.Ceph("CephFS PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
                 with Cluster("Namespace: kube-system"):

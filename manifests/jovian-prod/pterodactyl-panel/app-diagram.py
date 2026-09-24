@@ -12,7 +12,8 @@ with Diagram("app", show=False, direction="TB"):
             unas_pro = Custom("UNAS-Pro", "/app/icons/unifi-drive.png")
         with Cluster("Eos"):
             with Cluster("Wings-01/02"):
-                wings = Custom("Pterodactyl Wings", "/app/icons/pterodactyl.png")
+                with Cluster("Docker"):
+                    wings = Custom("Pterodactyl Wings", "/app/icons/pterodactyl.png")
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
                     with Cluster("Deployment: Cloudflare-tunnel"):

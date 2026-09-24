@@ -3,10 +3,12 @@ from diagrams.custom import Custom
 from diagrams.onprem import network
 
 with Diagram("app", show=False, direction="TB"):
-    with Cluster("k3s"):
-        with Cluster("Namespace: jovian-prod"):
-            converternow = Custom("Converter Now", "/app/icons/converternow.png")
-        with Cluster("Namespace: kube-system"):
-            traefik = network.Traefik("Traefik\nInternal Proxy")
+    with Cluster("Homelab"):
+        with Cluster("Eos"):
+            with Cluster("k3s"):
+                with Cluster("Namespace: jovian-prod"):
+                    converternow = Custom("Converter Now", "/app/icons/converternow.png")
+                with Cluster("Namespace: kube-system"):
+                    traefik = network.Traefik("Traefik\nInternal Proxy")
 
-        traefik >> Edge(color="blue", style="dotted") >> converternow
+                traefik >> Edge(color="blue", style="dotted") >> converternow

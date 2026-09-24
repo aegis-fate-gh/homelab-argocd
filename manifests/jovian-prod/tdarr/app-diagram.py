@@ -10,12 +10,16 @@ with Diagram("app", show=False, direction="TB"):
             tdarr_lxc = Custom("Tdarr Workers", "/app/icons/tdarr.png")
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
-                    tdarr = Custom("Tdarr Server", "/app/icons/tdarr.png")
+                    with Cluster("Pod: Tdarr"):
+                        tdarr = Custom("Tdarr Server", "/app/icons/tdarr.png")
+                    with Cluster("Pod: Arrstack"):
+                        radarr = Custom("Radarr", "/app/icons/radarr.png")
+                        sonarr = Custom("Sonarr", "/app/icons/sonarr.png")
+                        
                     ceph = storage.Ceph("CephFS PVC")
                     smb = PVC("Media SMB PVC")
                     loadbalancer = Custom("MetalLB IP", "/app/icons/metallb.png")
-                    radarr = Custom("Radarr", "/app/icons/radarr.png")
-                    sonarr = Custom("Sonarr", "/app/icons/sonarr.png")
+
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 

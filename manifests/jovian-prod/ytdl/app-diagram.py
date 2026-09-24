@@ -10,10 +10,13 @@ with Diagram("app", show=False, direction="TB"):
         with Cluster("Eos"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
-                    ytdl = Custom("YouTube DL Material", "/app/icons/youtube-dl.png")
+                    with Cluster("Pod: Ytdl"):
+                        ytdl = Custom("YouTube DL Material", "/app/icons/youtube-dl.png")
+                        mongo = Mongodb("YTDL Mongo")
+                        
                     ceph = storage.Ceph("Ytdl PVC")
                     smb = PVC("Media SMB PVC")
-                    mongo = Mongodb("YTDL Mongo")
+
                 with Cluster("Namespace: kube-system"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 

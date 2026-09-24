@@ -8,7 +8,8 @@ with Diagram("app", show=False, direction="TB"):
         with Cluster("Eos"):
             with Cluster("k3s"):
                 with Cluster("Namespace: jovian-prod"):
-                    cloudflare_tunnel = Custom("Cloudflare Tunnel", "/app/icons/cf-tunnel.png")
+                    with Cluster("Deployment: cloudflare-tunnel"):
+                        cloudflare_tunnel = Custom("Cloudflare Tunnel", "/app/icons/cf-tunnel.png")
                     freshrss = Custom("freshRSS", "/app/icons/freshrss.png")
                     gaming = Custom("Pterodactly", "/app/icons/pterodactyl.png")
                     grafana = Custom("Grafana", "/app/icons/grafana.png")
