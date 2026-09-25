@@ -36,6 +36,8 @@ with Diagram("app", show=False, direction="TB"):
                     traefik = network.Traefik("Traefik\nInternal Proxy")
 
     ceph >> Edge(color="darkorange", style="solid") >> immich
+    ceph >> Edge(color="darkorange", style="solid") >> db
+    ceph >> Edge(color="darkorange", style="solid") >> ml
 
     traefik >> Edge(color="blue", style="dotted") >> immich
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> immich
