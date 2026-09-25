@@ -26,9 +26,12 @@ with Diagram("APP", show=False, direction="TB"):
     backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << paperless_pvc
 
     paperless >> paperless_pvc
+    redis >> paperless_pvc
+    db >> paperless_pvc
     paperless >> redis
     paperless >> db
     paperless >> gotenberg
     paperless >> tika
+
 
                 
