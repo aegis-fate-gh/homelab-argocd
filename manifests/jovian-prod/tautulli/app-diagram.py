@@ -29,7 +29,7 @@ with Diagram("app", show=False, direction="TB"):
 
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> tautulli
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << tautulli
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
 
     tautulli >> proton
     plex >> tautulli

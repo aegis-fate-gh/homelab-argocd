@@ -24,6 +24,6 @@ with Diagram("app", show=False, direction="TB"):
     ceph >> Edge(color="darkorange", style="solid") >> uptime
     uptime >> discord
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << uptime
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
 
 

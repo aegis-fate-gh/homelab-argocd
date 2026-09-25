@@ -43,7 +43,7 @@ with Diagram("app", show=False, direction="TB"):
 
     ceph >> Edge(color="darkorange", style="solid") >> plex
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << plex
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
     plex >> Edge(color="orangered", style="bold") >> alloy >> Edge(color="orangered", style="bold") >> loki
     plex << Edge(color="orangered", style="bold") << smb >> Edge(color="orangered", style="bold") << unas_pro
 

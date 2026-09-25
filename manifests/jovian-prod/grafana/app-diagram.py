@@ -28,7 +28,7 @@ with Diagram("app", show=False, direction="TB"):
 
     traefik >> Edge(color="blue", style="dotted") >> grafana
     ceph >> Edge(color="darkorange", style="solid") >> grafana
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << grafana
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> grafana
 
     grafana >> loki

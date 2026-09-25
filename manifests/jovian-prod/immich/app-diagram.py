@@ -40,7 +40,7 @@ with Diagram("app", show=False, direction="TB"):
     traefik >> Edge(color="blue", style="dotted") >> immich
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> immich
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << immich
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
 
     immich << Edge(color="orangered", style="bold") << smb_silo >> Edge(color="orangered", style="bold") << unas_pro
     immich << Edge(color="orangered", style="bold") << smb_syn >> Edge(color="orangered", style="bold") << synology << dropbox

@@ -159,6 +159,3 @@ spec:
         persistentVolumeClaim:
           claimName: n8n-db-pvc
           readOnly: false
-      - name: db-init-config
-        configMap:
-          name: n8n-db-config

@@ -37,7 +37,7 @@ with Diagram("app", show=False, direction="TB"):
     metallb >> jellyfin
     traefik >> Edge(color="blue", style="dotted") >> jellyfin
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << jellyfin
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
     jellyfin << Edge(color="orangered", style="bold") << smb >> Edge(color="orangered", style="bold") << unas_pro
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> jellyfin
 

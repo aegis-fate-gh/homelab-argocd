@@ -31,7 +31,9 @@ with Diagram("app", show=False, direction="TB"):
     ceph_postgres >> Edge(color="darkorange", style="solid") >> postgres
     ceph_redis >> Edge(color="darkorange", style="solid") >> redis
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << sure
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph_sure
+    backup << Edge(color="black", style="solid") << ceph_postgres
+    backup << Edge(color="black", style="solid") << ceph_redis
 
     sure >> simplefin
     sure >> worker

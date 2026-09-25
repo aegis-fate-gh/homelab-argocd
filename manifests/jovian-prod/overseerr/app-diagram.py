@@ -1,6 +1,6 @@
 from diagrams import Diagram, Cluster, Edge
 from diagrams.custom import Custom
-from diagrams.onprem import network
+from diagrams.onprem import network, storage
 from diagrams.k8s.storage import PVC
 
 with Diagram("app", show=False, direction="TB"):
@@ -23,6 +23,7 @@ with Diagram("app", show=False, direction="TB"):
                     with Cluster("Deployment: Cloudflare-tunnel"):
                         cloudflare_tunnel = Custom("Cloudflare Tunnel", "/app/icons/cf-tunnel.png")
 
+                    seerr_pvc = storage.Ceph("n8n PVC")
                     backup = Custom("Backups", "/app/icons/restic.png")
                     smb = PVC("Media SMB PVC")
 
@@ -31,8 +32,9 @@ with Diagram("app", show=False, direction="TB"):
 
     traefik >> Edge(color="blue", style="dotted") >> seerr
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> seerr
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << seerr
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << seerr_pvc
 
+    seerr_pvc >> seerr
     seerr >> Edge(color="magenta1", style="bold", minlen="3") >> sonarr
     seerr >> Edge(color="magenta1", style="bold", minlen="3") >> radarr
     seerr >> Edge(color="magenta1", style="bold", minlen="3") >> discord

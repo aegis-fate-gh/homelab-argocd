@@ -33,7 +33,7 @@ with Diagram("app", show=False, direction="TB"):
     traefik >> Edge(color="blue", style="dotted") >> pterodactyl
     ceph >> Edge(color="darkorange", style="solid") >> pterodactyl
 
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << pterodactyl
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
     backblaze << Edge(color="black", style="solid") << unas_pro
 
     cloudflare_tunnel >> Edge(color="#CEA400", style="solid") >> pterodactyl

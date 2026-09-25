@@ -19,4 +19,4 @@ with Diagram("app", show=False, direction="TB"):
 
     traefik >> Edge(color="blue", style="dotted") >> vaultwarden
     ceph >> Edge(color="darkorange", style="solid") >> vaultwarden
-    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << vaultwarden
+    backblaze << Edge(color="black", style="solid") << backup << Edge(color="black", style="solid") << ceph
