@@ -67,6 +67,30 @@ data:
           9:20 T:T
           12:32 Counter Attack-Mankind
           15:37 Apple Seed
+      Daft Punk Orchestra Medley:
+        match:
+          title: Daft Punk Orchestra Medley
+        sort_title: Daft Punk Orchestra Medley
+        originally_available: 2020-03-08
+        summary: |
+          Source: Youtube
+          Creator: Kaleidoscope Orchestra
+          Description: We had so many people request a Daft Punk medley, so here it is! We had lots of fun recording this one back in February!
+
+          Orchestration by Steve Pycroft
+          Recorded by Mark Lewis & Thomas Dibb
+          Audio Mixed & Video Edited by Steve Pycroft
+          Mastered by Steve Pycroft
+          Video shot by Steve Pycroft & Mark Lewis
+          
+          0:00 Robot Rock
+          1:00 Harder, Better, Faster, Stronger
+          2:28 Something About Us
+          2:45 Aerodynamic
+          3:52 One More Time
+          4:58 Doin' it Right
+          6:00 Around the World
+          7:11 Robot Rock
 
 ---
 apiVersion: v1
