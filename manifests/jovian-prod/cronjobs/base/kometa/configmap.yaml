@@ -97,14 +97,3 @@ data:
           Creator: Around The World 4K
           Description: Paradise means different things to different people, yet, the term paradise often gets mentioned together with Bali. A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Bali is rated as one of the best travel destinations in the world.
         collection: [ Around the World ]
-
-# Title
-#   match:
-#     title:
-#   sort_title:
-#   originally_available: YYYY-MM-DD
-#   summary: |
-#     Source:
-#     Creator:
-#     Description:
-#   collection: [  ]
