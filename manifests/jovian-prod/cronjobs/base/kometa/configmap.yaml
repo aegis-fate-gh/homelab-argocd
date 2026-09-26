@@ -97,3 +97,24 @@ data:
           Creator: Around The World 4K
           Description: Paradise means different things to different people, yet, the term paradise often gets mentioned together with Bali. A magical blend of culture, people, nature, activities, weather, culinary delights, nightlife, and beautiful accommodation. Bali is rated as one of the best travel destinations in the world.
         collection: [ Around the World ]
+      Budapest 8K:
+        match:
+          title: Budapest 8K
+        sort_title: Budapest 8K
+        originally_available: 2019-03-25
+        summary: |
+          Source: YouTube
+          Creator: Around The World 4K
+          Description: Exploring Budapest, our first 8K resolution short film on our YouTube Channel. It's been a while now since the last posting but we're back with a completely new level of quality using professional Hollywood RED Digital Cinema cameras. Since this is our second video of the beautiful city of Budapest, we tried something new.
+        collection: [ Around the World ]
+
+# TITLE:
+#   match:
+#     title: TITLE
+#   sort_title: TITLE
+#   originally_available: YYYY-MM-DD
+#   summary: |
+#     Source: 
+#     Creator: 
+#     Description: 
+#   collection: [  ]
