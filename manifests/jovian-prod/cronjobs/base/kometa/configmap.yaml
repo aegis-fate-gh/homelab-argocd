@@ -185,28 +185,28 @@ data:
           Visually they are quite striking, with a long, pointed nose more like that of a supersonic plane than a conventional high speed train. In 1990, Hitachi commissioned Neumeister Design of Germany to create an exterior and interior design for a new Shinkansen. It became the basis for the development of the 500 Series.
           The first set was delivered for testing in 1995, entering passenger service in March 1997. The entire fleet of nine sets was delivered by 1998. Besides the premium Nozomi services and the current Kodama services, full-length trains are also currently used on Hikari Rail Star services during the busy holiday periods.
         collection: [ Shinkansen, Trains, High Speed Rail, Japan ]
-      Dead Fantasy Full HD:
-        match:
-          title: Dead Fantasy Full HD
-        sort_title: Dead Fantasy Full HD (Parts 1 - 6)
-        title: Dead Fantasy (Parts 1 - 6)
-        originally_available: 2007-03-12
-        summary: |
-          Source: Gametrailers.com
-          Creator: Montyoum
-          Description: Dead Fantasy is a CGI crossover Fan Film action series made by Monty Oum, previously known at the time for Haloid, another crossover video. It stars the casts of Dead or Alive (+ Ninja Gaiden) and Final Fantasy (+ Kingdom Hearts) beating the stuffing out of each other in the most awesome ways imaginable.
-        collection: [ Gaming ]
-      DJI - Introducing the Spreading Wings S1000:
-        match:
-          title: DJI - Introducing the Spreading Wings S1000
-        sort_title: DJI - Introducing the Spreading Wings S1000
-        title: DJI - Introducing the Spreading Wings S1000
-        originally_available: 2014-01-23
-        summary: |
-          Source: YouTube
-          Creator: DJI
-          Description: The S1000 has been specially designed for high level professional aerial photography and cinematography. It comes with retractable landing gear, as well as folding frame arms and propellers to minimize storage space. Every detail has been designed with the needs of creators in mind, helping them to realize their vision while its light weight offers them a longer flight time.
-        collection: [ Drone, Aerials, DJI ]
+  # Dead Fantasy Full HD:
+  #   match:
+  #     title: Dead Fantasy Full HD
+  #   sort_title: Dead Fantasy Full HD (Parts 1 - 6)
+  #   title: Dead Fantasy (Parts 1 - 6)
+  #   originally_available: 2007-03-12
+  #   summary: |
+  #     Source: Gametrailers.com
+  #     Creator: Montyoum
+  #     Description: Dead Fantasy is a CGI crossover Fan Film action series made by Monty Oum, previously known at the time for Haloid, another crossover video. It stars the casts of Dead or Alive (+ Ninja Gaiden) and Final Fantasy (+ Kingdom Hearts) beating the stuffing out of each other in the most awesome ways imaginable.
+  #   collection: [ Gaming ]
+  # DJI - Introducing the Spreading Wings S1000:
+  #   match:
+  #     title: DJI - Introducing the Spreading Wings S1000
+  #   sort_title: DJI - Introducing the Spreading Wings S1000
+  #   title: DJI - Introducing the Spreading Wings S1000
+  #   originally_available: 2014-01-23
+  #   summary: |
+  #     Source: YouTube
+  #     Creator: DJI
+  #     Description: The S1000 has been specially designed for high level professional aerial photography and cinematography. It comes with retractable landing gear, as well as folding frame arms and propellers to minimize storage space. Every detail has been designed with the needs of creators in mind, helping them to realize their vision while its light weight offers them a longer flight time.
+  #   collection: [ Drone, Aerials, DJI ]
 
 # TITLE:
 #   match:
