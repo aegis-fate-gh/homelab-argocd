@@ -135,7 +135,6 @@ data:
         match:
           title: rendezvous
         sort_title: Rendezvous
-        title: Rendezvous
         originally_available: 1976-09-17
         summary: |
           C'était un rendez-vous - Paris, 5:30 AM, 15th of August, 1976. As the night's dimming lights yield to dawn, a mighty mechanical roar cuts through the silence. It is the unmistakable sound of a Ferrari 275 GTB V-12 engine, revving and shifting gears as it furiously enters the tunnel at Porte Dauphine. Exiting flat out onto the Avenue des Champs-Élysées, the mysterious driver aims for the Place de la Concorde and the Palais Garnier, downshifting in a mad dash through the heart of the city. As the car enters narrow, cobbled streets, the tyres squeal, scattering pigeons and startled pedestrians alike. Now, this heart-pounding, nerve-wracking drive continues towards the Place Pigalle. With the Basilique du Sacré-Coeur as the final destination and one blind hairpin left that could turn one's hair grey, the daring driver finally reaches the end of this adrenaline-filled ride. But who is waiting for him at the finish line?
@@ -176,7 +175,6 @@ data:
         match:
           title: 39_500v4_090301
         sort_title: The 500 Series Shinkansen Nozomi Ver.4
-        title: The 500 Series Shinkansen Nozomi Ver.4
         originally_available: 2009-03-01:
         summary: |
           Source: Web
