@@ -187,7 +187,7 @@ data:
         collection: [ Shinkansen, Trains, High Speed Rail, Japan ]
       Dead Fantasy Full HD:
         match:
-          title: Dead Fantasy Full HD
+          title: Dead Fantasy Full HD (Parts 1 - 6)
         sort_title: Dead Fantasy Full HD (Parts 1 - 6)
         title: Dead Fantasy (Parts 1 - 6)
         originally_available: 2007-03-12
@@ -207,6 +207,40 @@ data:
           Creator: DJI
           Description: The S1000 has been specially designed for high level professional aerial photography and cinematography. It comes with retractable landing gear, as well as folding frame arms and propellers to minimize storage space. Every detail has been designed with the needs of creators in mind, helping them to realize their vision while its light weight offers them a longer flight time.
         collection: [ Drone, Aerials, DJI ]
+      Amtrak Announces Next Gen HSR:
+        match:
+          title: Amtrak Announces Next Gen HSR
+        sort_title: Amtrak Announces Next Gen HSR
+        title: Amtrak Announces Next Gen HSR
+        originally_available: 2016-01-01
+        summary: |
+          Source: YouTube
+          Creator: Amtrak
+          Description: Video announcing the Amtrak Acela replacement, the Avelia Liberty
+        collection: [ Amtrak, Trains, High Speed Rail ]
+      Boeing 787-10 Dreamliner and 737 MAX 9 Fly Together:
+        match:
+          title: Boeing 787-10 Dreamliner and 737 MAX 9 Fly Together
+        sort_title: Boeing 787-10 Dreamliner and 737 MAX 9 Fly Together
+        title: Boeing 787-10 Dreamliner and 737 MAX 9 Fly Together
+        originally_available: 2017-06-16
+        summary: |
+          Source: YouTube
+          Creator: Boeing
+          Description: Watch the Boeing 737 MAX 9 and 787-10 Dreamliner soar together as they show off their advanced designs, superior performance and sheer beauty.
+          This is a real video of our Boeing 737 MAX 9 and 787-10 Dreamliner being flown by our test pilots. No CG effects were used in any of the footage. Video was captured mostly from a chase plane and helicopter as our newest airplanes flew together for the first time over beautiful Washington State earlier this month.
+        collection: [ Boeing, Aircraft ]
+      Boeing 787-10 Dreamliner and 737 MAX 9 Fly Together:
+        match:
+          title: Boeing Prepares the 787-9 Dreamliner for the 2015 Paris Air Show
+        sort_title: Boeing Prepares the 787-9 Dreamliner for the 2015 Paris Air Show
+        title: Boeing Prepares the 787-9 Dreamliner for the 2015 Paris Air Show
+        originally_available: 2015-06-11
+        summary: |
+          Source: YouTube
+          Creator: Boeing
+          Description: Watch as Boeing's expert crew rehearses their 2015 Paris Air Show flying display.
+        collection: [ Boeing, Aircraft ]
 
 # TITLE:
 #   match:
