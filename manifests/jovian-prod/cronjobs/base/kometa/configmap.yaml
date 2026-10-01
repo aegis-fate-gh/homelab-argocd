@@ -172,12 +172,12 @@ data:
           Creator: Playstation
           Description: The opening to Gran Turismo 6
         collection: [ Gaming, Gran Turismo, Gran Turismo 6 ]
-      The 500 Series Shinkansen Nozomi Ver.4
+      The 500 Series Shinkansen Nozomi Ver.4:
         match:
           title: 39_500v4_090301
         sort_title: The 500 Series Shinkansen Nozomi Ver.4
         title: The 500 Series Shinkansen Nozomi Ver.4
-        originally_available: 2009-03-01
+        originally_available: 2009-03-01:
         summary: |
           Source: Web
           Creator: aidusl
@@ -185,7 +185,7 @@ data:
           Visually they are quite striking, with a long, pointed nose more like that of a supersonic plane than a conventional high speed train. In 1990, Hitachi commissioned Neumeister Design of Germany to create an exterior and interior design for a new Shinkansen. It became the basis for the development of the 500 Series.
           The first set was delivered for testing in 1995, entering passenger service in March 1997. The entire fleet of nine sets was delivered by 1998. Besides the premium Nozomi services and the current Kodama services, full-length trains are also currently used on Hikari Rail Star services during the busy holiday periods.
         collection: [ Shinkansen, Trains, High Speed Rail, Japan ]
-      Dead Fantasy Full HD
+      Dead Fantasy Full HD:
         match:
           title: Dead Fantasy Full HD (Parts 1 - 6)
         sort_title: Dead Fantasy Full HD (Parts 1 - 6)
@@ -196,7 +196,7 @@ data:
           Creator: Montyoum
           Description: Dead Fantasy is a CGI crossover Fan Film action series made by Monty Oum, previously known at the time for Haloid, another crossover video. It stars the casts of Dead or Alive (+ Ninja Gaiden) and Final Fantasy (+ Kingdom Hearts) beating the stuffing out of each other in the most awesome ways imaginable.
         collection: [ Gaming ]
-      DJI - Introducing the Spreading Wings S1000
+      DJI - Introducing the Spreading Wings S1000:
         match:
           title: DJI - Introducing the Spreading Wings S1000
         sort_title: DJI - Introducing the Spreading Wings S1000
