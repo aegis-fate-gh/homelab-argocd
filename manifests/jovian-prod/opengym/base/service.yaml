@@ -8,6 +8,6 @@ spec:
     app: opengym
   ports:
     - port: 8080
-      targetPort: opengym-http
+      targetPort: web
       protocol: TCP
-      name: opengym-http
+      name: web
