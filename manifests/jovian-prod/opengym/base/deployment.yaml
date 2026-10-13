@@ -31,9 +31,9 @@ spec:
             - name: DATA_DIR
               value: /data
             - name: RP_ID
-              value: opengym.example.com
+              value: opengym.jovian.local.sch-apps.com
             - name: ORIGIN
-              value: https://opengym.example.com
+              value: https://opengym.jovian.local.sch-apps.com
             # Everything else in .env.example (INVITE_ONLY, ADMIN_UIDS, FIRST_USER_ADMIN,
             # ALLOW_GUEST, DEFAULT_LANG, PASSWORD_LOGIN, the push keys, ...) goes here the
             # same way. FIRST_USER_ADMIN="1" makes the first profile created on an empty
