@@ -41,10 +41,8 @@ spec:
           value: 'America/Chicago'
         resources:
           requests:
-            memory: "300Mi"
-            cpu: "250m"
-          limits:
             memory: "500Mi"
+            cpu: "250m"
       volumes:
       - name: config
         persistentVolumeClaim:

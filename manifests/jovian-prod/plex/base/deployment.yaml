@@ -43,11 +43,8 @@ spec:
           readOnly: true
         resources:
           requests:
-            memory: "80Mi"
+            memory: "150Mi"
             cpu: "125m"
-          limits:
-            memory: "100Mi"
-            cpu: "500m"
       - name: plex
         image: plexinc/pms-docker:latest
         imagePullPolicy: Always
